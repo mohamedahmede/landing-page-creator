@@ -1,0 +1,46 @@
+# Development files
+src/
+.next/
+node_modules/
+.git/
+.gitignore
+
+# Build tooling
+rollup.config.js
+tsconfig.json
+tsconfig.build.json
+postcss.config.mjs
+eslint.config.mjs
+next.config.ts
+
+# Documentation
+*.md
+!README.md
+
+# Testing
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Config files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Development scripts
+package-lock.json
+

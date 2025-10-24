@@ -1,0 +1,64 @@
+:root {
+    /* Colors Tokens */
+        --color-black: #000000;
+        --color-white: #ffffff;
+        --color-red: #C21E56;
+        --color-gray: #F5F5F5;
+        --color-lime: #32CD32;
+    
+        /* Button Variants Tokens */
+        --btn-black-bg: var(--color-black);
+        --btn-black-hover-bg: var(--color-white);
+        --btn-black-text: var(--color-white);
+        --btn-black-text-hover: var(--color-black);
+        --btn-white-bg: var(--color-white);
+        --btn-white-hover-bg: var(--color-black);
+        --btn-white-text: var(--color-black);
+        --btn-white-text-hover: var(--color-white);
+        --btn-red-bg: var(--color-red);
+        --btn-red-hover-bg: var(--color-white);
+        --btn-red-text: var(--color-white);
+        --btn-red-text-hover: var(--color-red);
+        --btn-gray-bg: var(--color-gray);
+        --btn-gray-hover-bg: var(--color-white);
+        --btn-gray-text: var(--color-black);
+        --btn-gray-text-hover: var(--color-black);
+        --btn-lime-bg: var(--color-lime);
+        --btn-lime-hover-bg: var(--color-white);
+        --btn-lime-text: var(--color-white);
+        --btn-lime-text-hover: var(--color-lime);
+        
+        /* Transparent Variants Tokens */
+        --btn-transparent-black-bg: transparent;
+        --btn-transparent-black-border: var(--color-black);
+        --btn-transparent-black-text: var(--color-black);
+        --btn-transparent-black-hover-bg: var(--color-black);
+        --btn-transparent-black-hover-text: var(--color-white);
+        
+        --btn-transparent-white-bg: transparent;
+        --btn-transparent-white-border: var(--color-white);
+        --btn-transparent-white-text: var(--color-white);
+        --btn-transparent-white-hover-bg: var(--color-white);
+        --btn-transparent-white-hover-text: var(--color-black);
+        
+        --btn-transparent-red-bg: transparent;
+        --btn-transparent-red-border: var(--color-red);
+        --btn-transparent-red-text: var(--color-red);
+        --btn-transparent-red-hover-bg: var(--color-red);
+        --btn-transparent-red-hover-text: var(--color-white);
+        
+        --btn-transparent-gray-bg: transparent;
+        --btn-transparent-gray-border: var(--color-gray);
+        --btn-transparent-gray-text: var(--color-black);
+        --btn-transparent-gray-hover-bg: var(--color-gray);
+        --btn-transparent-gray-hover-text: var(--color-black);
+        
+        --btn-transparent-lime-bg: transparent;
+        --btn-transparent-lime-border: var(--color-lime);
+        --btn-transparent-lime-text: var(--color-lime);
+        --btn-transparent-lime-hover-bg: var(--color-lime);
+        --btn-transparent-lime-hover-text: var(--color-white);
+    
+    }
+    
+    
