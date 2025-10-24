@@ -9,7 +9,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	/** If true, skip all default styles and only use className (escape hatch) */
 	unstyled?: boolean;
 	className?: string;
-	text?: string;
+	text: string;
 	url?: string;
 	blank?: boolean;
 	onClick?: () => void;

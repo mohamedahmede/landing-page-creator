@@ -88,7 +88,7 @@ A highly customizable button component with multiple style variants, sizes, and 
 
 | Prop | Type | Default | Required | Description |
 |------|------|---------|----------|-------------|
-| `text` | `string` | - | ❌ | Button text content |
+| `text` | `string` | - | ✅ | Button text content |
 | `variant` | `"black" \| "white" \| "red" \| "gray" \| "lime" \| "transparent-black" \| "transparent-white" \| "transparent-red" \| "transparent-gray" \| "transparent-lime"` | `"black"` | ❌ | Button style variant |
 | `size` | `"sm" \| "md" \| "lg"` | `"md"` | ❌ | Button size |
 | `shape` | `"rounded" \| "square"` | `"rounded"` | ❌ | Button shape |
