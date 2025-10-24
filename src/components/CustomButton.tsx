@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes } from "react";
 import clsx from "clsx";
-import "./CustomButton.css";
+import "../styles/customButton.css";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	variant?: Variant;
