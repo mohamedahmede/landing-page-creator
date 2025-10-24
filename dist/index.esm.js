@@ -1,4 +1,4 @@
-import { jsx, jsxs } from 'react/jsx-runtime';
+import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -68,5 +68,25 @@ function Hero({ title, subtitle, description, primaryButtonText, primaryButtonUr
     return (jsxs("div", { className: heroClasses, style: Object.assign(Object.assign({ minHeight }, backgroundStyle), textColorStyle), children: [hasBackgroundImage && (jsx("div", { className: "ma-hero-overlay", style: { opacity: overlayOpacity } })), jsxs("div", { className: "ma-hero-content", children: [subtitle && jsx("p", { className: "ma-hero-subtitle", children: subtitle }), jsx("h1", { className: "ma-hero-title", children: title }), description && jsx("p", { className: "ma-hero-description", children: description }), (primaryButtonText || secondaryButtonText) && (jsxs("div", { className: "ma-hero-buttons", children: [primaryButtonText && (jsx(CustomButton, { text: primaryButtonText, variant: primaryButtonVariant, url: primaryButtonUrl, size: "lg" })), secondaryButtonText && (jsx(CustomButton, { text: secondaryButtonText, variant: secondaryButtonVariant, url: secondaryButtonUrl, size: "lg" }))] })), children] })] }));
 }
 
-export { CustomButton, Hero };
+const SectionsRenderer = ({ sections }) => {
+    return (jsx(Fragment, { children: sections.map((section, index) => {
+            switch (section.type) {
+                case "hero":
+                    return jsx(Hero, Object.assign({}, section.content), index);
+                // Other sections commented out for now
+                // case "about":
+                // 	return <AboutSection key={index} {...section.content} />;
+                // case "features":
+                // 	return <FeaturesSection key={index} {...section.content} />;
+                // case "testimonials":
+                // 	return <TestimonialsSection key={index} {...section.content} />;
+                // case "contact":
+                // 	return <ContactSection key={index} {...section.content} />;
+                default:
+                    return null;
+            }
+        }) }));
+};
+
+export { CustomButton, Hero, SectionsRenderer };
 //# sourceMappingURL=index.esm.js.map

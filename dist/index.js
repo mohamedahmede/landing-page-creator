@@ -70,6 +70,27 @@ function Hero({ title, subtitle, description, primaryButtonText, primaryButtonUr
     return (jsxRuntime.jsxs("div", { className: heroClasses, style: Object.assign(Object.assign({ minHeight }, backgroundStyle), textColorStyle), children: [hasBackgroundImage && (jsxRuntime.jsx("div", { className: "ma-hero-overlay", style: { opacity: overlayOpacity } })), jsxRuntime.jsxs("div", { className: "ma-hero-content", children: [subtitle && jsxRuntime.jsx("p", { className: "ma-hero-subtitle", children: subtitle }), jsxRuntime.jsx("h1", { className: "ma-hero-title", children: title }), description && jsxRuntime.jsx("p", { className: "ma-hero-description", children: description }), (primaryButtonText || secondaryButtonText) && (jsxRuntime.jsxs("div", { className: "ma-hero-buttons", children: [primaryButtonText && (jsxRuntime.jsx(CustomButton, { text: primaryButtonText, variant: primaryButtonVariant, url: primaryButtonUrl, size: "lg" })), secondaryButtonText && (jsxRuntime.jsx(CustomButton, { text: secondaryButtonText, variant: secondaryButtonVariant, url: secondaryButtonUrl, size: "lg" }))] })), children] })] }));
 }
 
+const SectionsRenderer = ({ sections }) => {
+    return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: sections.map((section, index) => {
+            switch (section.type) {
+                case "hero":
+                    return jsxRuntime.jsx(Hero, Object.assign({}, section.content), index);
+                // Other sections commented out for now
+                // case "about":
+                // 	return <AboutSection key={index} {...section.content} />;
+                // case "features":
+                // 	return <FeaturesSection key={index} {...section.content} />;
+                // case "testimonials":
+                // 	return <TestimonialsSection key={index} {...section.content} />;
+                // case "contact":
+                // 	return <ContactSection key={index} {...section.content} />;
+                default:
+                    return null;
+            }
+        }) }));
+};
+
 exports.CustomButton = CustomButton;
 exports.Hero = Hero;
+exports.SectionsRenderer = SectionsRenderer;
 //# sourceMappingURL=index.js.map

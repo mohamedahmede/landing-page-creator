@@ -1,8 +1,4 @@
-"use client";
-
-import { HeroProps } from "../types/sections/heroProps";
-import { Hero } from "./sections/Hero";
-
+import { Hero, HeroProps } from "./sections/Hero";
 
 // Define individual section types with their specific content
 type HeroSection = {

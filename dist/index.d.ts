@@ -57,5 +57,15 @@ interface HeroProps {
 }
 declare function Hero({ title, subtitle, description, primaryButtonText, primaryButtonUrl, primaryButtonVariant, secondaryButtonText, secondaryButtonUrl, secondaryButtonVariant, backgroundColor, backgroundImage, overlayOpacity, textColor, align, minHeight, className, children, }: HeroProps): react_jsx_runtime.JSX.Element;
 
-export { CustomButton, Hero };
+type HeroSection = {
+    type: "hero";
+    content: HeroProps;
+};
+type SectionConfig = HeroSection;
+interface SectionsRendererProps {
+    sections: SectionConfig[];
+}
+declare const SectionsRenderer: ({ sections }: SectionsRendererProps) => react_jsx_runtime.JSX.Element;
+
+export { CustomButton, Hero, SectionsRenderer };
 export type { HeroProps };
