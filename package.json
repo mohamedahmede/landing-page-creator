@@ -11,12 +11,12 @@
       "import": "./dist/index.esm.js",
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./styles.css": "./dist/styles.css"
   },
   "files": [
     "dist",
-    "README.md",
-    "dist/styles.css"
+    "README.md"
   ],
   "scripts": {
     "build": "rollup -c",

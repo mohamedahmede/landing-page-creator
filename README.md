@@ -18,20 +18,26 @@ You **must** import the CSS file for styles to work:
 
 ```tsx
 // In your main entry file (index.js, App.js, or _app.js)
+import 'landing-page-creator/styles.css';
+```
+
+**OR** import it directly:
+
+```tsx
 import 'landing-page-creator/dist/styles.css';
 ```
 
-Or import it in your CSS/SCSS file:
+You can also import it in your CSS/SCSS file:
 
 ```css
-@import 'landing-page-creator/dist/styles.css';
+@import 'landing-page-creator/styles.css';
 ```
 
 ## Usage
 
 ```tsx
 import { CustomButton } from 'landing-page-creator';
-import 'landing-page-creator/dist/styles.css'; // ⚠️ Don't forget this!
+import 'landing-page-creator/styles.css'; // ⚠️ Don't forget this!
 
 function App() {
   return (
