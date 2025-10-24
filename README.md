@@ -12,24 +12,33 @@ npm install landing-page-creator
 
 ## Setup
 
-Import the CSS file in your app:
+### ⚠️ Important: Import CSS
+
+You **must** import the CSS file for styles to work:
 
 ```tsx
-// In your main entry file (e.g., index.js, App.js, or _app.js)
+// In your main entry file (index.js, App.js, or _app.js)
 import 'landing-page-creator/dist/styles.css';
+```
+
+Or import it in your CSS/SCSS file:
+
+```css
+@import 'landing-page-creator/dist/styles.css';
 ```
 
 ## Usage
 
 ```tsx
 import { CustomButton } from 'landing-page-creator';
+import 'landing-page-creator/dist/styles.css'; // ⚠️ Don't forget this!
 
 function App() {
   return (
     <div>
-      <CustomButton variant="primary">Click Me</CustomButton>
-      <CustomButton variant="secondary">Secondary</CustomButton>
-      <CustomButton variant="danger">Danger</CustomButton>
+      <CustomButton variant="black" text="Click Me" />
+      <CustomButton variant="white" text="Secondary" />
+      <CustomButton variant="red" text="Danger" />
     </div>
   );
 }
@@ -43,34 +52,43 @@ A customizable button component with multiple variants.
 
 #### Props
 
-- `children` (React.ReactNode): The button content
-- `variant` ("primary" | "secondary" | "danger" | "success" | "warning" | "outline" | "ghost"): Button style variant (default: "primary")
-- `size` ("small" | "medium" | "large"): Button size (default: "medium")
-- `fullWidth` (boolean): Make button full width (default: false)
+- `text` (string): Button text content
+- `variant` ("black" | "white" | "red" | "gray" | "lime" | "transparent-black" | "transparent-white" | "transparent-red" | "transparent-gray" | "transparent-lime"): Button style variant (default: "black")
+- `size` ("sm" | "md" | "lg"): Button size (default: "md")
+- `shape` ("rounded" | "square"): Button shape (default: "rounded")
 - `disabled` (boolean): Disable the button (default: false)
+- `unstyled` (boolean): Skip all default styles, use only className
+- `url` (string): Render as link with this URL
+- `blank` (boolean): Open link in new tab (only works with `url`)
 - `onClick` (() => void): Click handler function
+- All standard HTML button attributes are supported
 
 #### Examples
 
 ```tsx
-// Basic usage
-<CustomButton variant="primary">Click Me</CustomButton>
+// Basic usage with text prop
+<CustomButton variant="black" text="Click Me" />
 
 // Different variants
-<CustomButton variant="success">Success</CustomButton>
-<CustomButton variant="warning">Warning</CustomButton>
-<CustomButton variant="outline">Outline</CustomButton>
-<CustomButton variant="ghost">Ghost</CustomButton>
+<CustomButton variant="red" text="Success" />
+<CustomButton variant="lime" text="Warning" />
+<CustomButton variant="transparent-black" text="Outline" />
+<CustomButton variant="transparent-white" text="Ghost" />
 
-// With size and props
-<CustomButton variant="primary" size="large" fullWidth onClick={() => console.log('Clicked!')}>
-  Large Button
-</CustomButton>
+// With size and shape
+<CustomButton variant="black" size="lg" shape="rounded" text="Large Button" />
+
+// Button as link
+<CustomButton variant="red" url="/signup" text="Sign Up" />
+
+// Link opens in new tab
+<CustomButton variant="transparent-black" url="https://example.com" blank text="External Link" />
 
 // Disabled state
-<CustomButton variant="primary" disabled>
-  Disabled Button
-</CustomButton>
+<CustomButton variant="black" disabled text="Disabled Button" />
+
+// Fully custom (unstyled)
+<CustomButton unstyled className="my-class" text="Custom" />
 ```
 
 ## License
