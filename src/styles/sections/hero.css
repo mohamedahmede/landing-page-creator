@@ -1,0 +1,121 @@
+@import "../tokens.css";
+
+/* Hero Component Styles */
+.ma-hero {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 4rem 2rem;
+	width: 100%;
+	color: #000000;
+
+	/* When hero has overlay (image background), text should be white */
+	&:has(.ma-hero-overlay) {
+		color: #ffffff;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		padding: 3rem 1.5rem;
+	}
+}
+
+.ma-hero-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #000000;
+	z-index: 1;
+}
+
+.ma-hero-content {
+	position: relative;
+	z-index: 2;
+	max-width: 800px;
+	width: 100%;
+}
+
+/* Alignment */
+.ma-hero--left {
+	.ma-hero-content {
+		text-align: left;
+	}
+
+	.ma-hero-buttons {
+		justify-content: flex-start;
+	}
+}
+
+.ma-hero--center {
+	.ma-hero-content {
+		text-align: center;
+	}
+
+	.ma-hero-buttons {
+		justify-content: center;
+	}
+}
+
+.ma-hero--right {
+	.ma-hero-content {
+		text-align: right;
+	}
+
+	.ma-hero-buttons {
+		justify-content: flex-end;
+	}
+}
+
+/* Typography */
+.ma-hero-subtitle {
+	font-size: 1rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	margin-bottom: 1rem;
+	color: inherit;
+}
+
+.ma-hero-title {
+	font-size: 3rem;
+	font-weight: 700;
+	line-height: 1.2;
+	margin-bottom: 1.5rem;
+	color: inherit;
+
+	@media (max-width: 768px) {
+		font-size: 2rem;
+	}
+}
+
+.ma-hero-description {
+	font-size: 1.25rem;
+	line-height: 1.6;
+	margin-bottom: 2rem;
+	color: inherit;
+	opacity: 0.9;
+
+	@media (max-width: 768px) {
+		font-size: 1rem;
+	}
+}
+
+/* Buttons */
+.ma-hero-buttons {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		width: 100%;
+
+		.ma-btn {
+			width: 100%;
+		}
+	}
+}
+

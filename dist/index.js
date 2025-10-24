@@ -53,26 +53,23 @@ const CustomButton = (_a) => {
     return buttonElement;
 };
 
-const SectionsRender = ({ sections, className }) => {
-    const renderSection = (section) => {
-        switch (section.type) {
-            case "hero":
-                return jsxRuntime.jsx(HeroComponent, { section: section });
-            case "features":
-                return jsxRuntime.jsx(FeaturesComponent, { section: section });
-            default:
-                return null;
+function Hero({ title, subtitle, description, primaryButtonText, primaryButtonUrl, primaryButtonVariant = "black", secondaryButtonText, secondaryButtonUrl, secondaryButtonVariant = "transparent-black", backgroundColor = "#ffffff", backgroundImage, overlayOpacity = 0.4, textColor, align = "center", minHeight = "500px", className, children, }) {
+    const hasBackgroundImage = !!backgroundImage;
+    const backgroundStyle = hasBackgroundImage
+        ? {
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            position: "relative",
         }
-    };
-    return (jsxRuntime.jsx("div", { className: `sections-container ${className || ""}`, children: sections.map((section) => (jsxRuntime.jsx("div", { className: `section section-${section.type} ${section.className || ""}`, children: renderSection(section) }, section.id))) }));
-};
-const HeroComponent = ({ section }) => {
-    return (jsxRuntime.jsx("div", { className: "hero-section", style: { backgroundColor: section.backgroundColor }, children: jsxRuntime.jsxs("div", { className: "hero-content", children: [section.image && (jsxRuntime.jsx("div", { className: "hero-image", children: jsxRuntime.jsx("img", { src: section.image, alt: section.title }) })), jsxRuntime.jsxs("div", { className: "hero-text", children: [jsxRuntime.jsx("h1", { className: "hero-title", children: section.title }), section.subtitle && jsxRuntime.jsx("h2", { className: "hero-subtitle", children: section.subtitle }), section.description && jsxRuntime.jsx("p", { className: "hero-description", children: section.description }), jsxRuntime.jsxs("div", { className: "hero-buttons", children: [section.primaryButton && (jsxRuntime.jsx(CustomButton, { text: section.primaryButton.text, url: section.primaryButton.url, variant: section.primaryButton.variant, size: section.primaryButton.size, onClick: section.primaryButton.onClick })), section.secondaryButton && (jsxRuntime.jsx(CustomButton, { text: section.secondaryButton.text, url: section.secondaryButton.url, variant: section.secondaryButton.variant, size: section.secondaryButton.size, onClick: section.secondaryButton.onClick }))] })] })] }) }));
-};
-const FeaturesComponent = ({ section }) => {
-    return (jsxRuntime.jsx("div", { className: "features-section", style: { backgroundColor: section.backgroundColor }, children: jsxRuntime.jsxs("div", { className: "features-content", children: [section.title && jsxRuntime.jsx("h2", { className: "features-title", children: section.title }), section.subtitle && jsxRuntime.jsx("h3", { className: "features-subtitle", children: section.subtitle }), jsxRuntime.jsx("div", { className: "features-grid", children: section.features.map((feature, index) => (jsxRuntime.jsxs("div", { className: "feature-item", children: [feature.icon && (jsxRuntime.jsx("div", { className: "feature-icon", children: jsxRuntime.jsx("span", { children: feature.icon }) })), jsxRuntime.jsx("h3", { className: "feature-title", children: feature.title }), jsxRuntime.jsx("p", { className: "feature-description", children: feature.description })] }, index))) })] }) }));
-};
+        : {
+            backgroundColor,
+        };
+    const heroClasses = clsx("ma-hero", `ma-hero--${align}`, className);
+    const textColorStyle = textColor ? { color: textColor } : {};
+    return (jsxRuntime.jsxs("div", { className: heroClasses, style: Object.assign(Object.assign({ minHeight }, backgroundStyle), textColorStyle), children: [hasBackgroundImage && (jsxRuntime.jsx("div", { className: "ma-hero-overlay", style: { opacity: overlayOpacity } })), jsxRuntime.jsxs("div", { className: "ma-hero-content", children: [subtitle && jsxRuntime.jsx("p", { className: "ma-hero-subtitle", children: subtitle }), jsxRuntime.jsx("h1", { className: "ma-hero-title", children: title }), description && jsxRuntime.jsx("p", { className: "ma-hero-description", children: description }), (primaryButtonText || secondaryButtonText) && (jsxRuntime.jsxs("div", { className: "ma-hero-buttons", children: [primaryButtonText && (jsxRuntime.jsx(CustomButton, { text: primaryButtonText, variant: primaryButtonVariant, url: primaryButtonUrl, size: "lg" })), secondaryButtonText && (jsxRuntime.jsx(CustomButton, { text: secondaryButtonText, variant: secondaryButtonVariant, url: secondaryButtonUrl, size: "lg" }))] })), children] })] }));
+}
 
 exports.CustomButton = CustomButton;
-exports.SectionsRender = SectionsRender;
+exports.Hero = Hero;
 //# sourceMappingURL=index.js.map

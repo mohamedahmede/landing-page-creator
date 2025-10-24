@@ -51,25 +51,22 @@ const CustomButton = (_a) => {
     return buttonElement;
 };
 
-const SectionsRender = ({ sections, className }) => {
-    const renderSection = (section) => {
-        switch (section.type) {
-            case "hero":
-                return jsx(HeroComponent, { section: section });
-            case "features":
-                return jsx(FeaturesComponent, { section: section });
-            default:
-                return null;
+function Hero({ title, subtitle, description, primaryButtonText, primaryButtonUrl, primaryButtonVariant = "black", secondaryButtonText, secondaryButtonUrl, secondaryButtonVariant = "transparent-black", backgroundColor = "#ffffff", backgroundImage, overlayOpacity = 0.4, textColor, align = "center", minHeight = "500px", className, children, }) {
+    const hasBackgroundImage = !!backgroundImage;
+    const backgroundStyle = hasBackgroundImage
+        ? {
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            position: "relative",
         }
-    };
-    return (jsx("div", { className: `sections-container ${className || ""}`, children: sections.map((section) => (jsx("div", { className: `section section-${section.type} ${section.className || ""}`, children: renderSection(section) }, section.id))) }));
-};
-const HeroComponent = ({ section }) => {
-    return (jsx("div", { className: "hero-section", style: { backgroundColor: section.backgroundColor }, children: jsxs("div", { className: "hero-content", children: [section.image && (jsx("div", { className: "hero-image", children: jsx("img", { src: section.image, alt: section.title }) })), jsxs("div", { className: "hero-text", children: [jsx("h1", { className: "hero-title", children: section.title }), section.subtitle && jsx("h2", { className: "hero-subtitle", children: section.subtitle }), section.description && jsx("p", { className: "hero-description", children: section.description }), jsxs("div", { className: "hero-buttons", children: [section.primaryButton && (jsx(CustomButton, { text: section.primaryButton.text, url: section.primaryButton.url, variant: section.primaryButton.variant, size: section.primaryButton.size, onClick: section.primaryButton.onClick })), section.secondaryButton && (jsx(CustomButton, { text: section.secondaryButton.text, url: section.secondaryButton.url, variant: section.secondaryButton.variant, size: section.secondaryButton.size, onClick: section.secondaryButton.onClick }))] })] })] }) }));
-};
-const FeaturesComponent = ({ section }) => {
-    return (jsx("div", { className: "features-section", style: { backgroundColor: section.backgroundColor }, children: jsxs("div", { className: "features-content", children: [section.title && jsx("h2", { className: "features-title", children: section.title }), section.subtitle && jsx("h3", { className: "features-subtitle", children: section.subtitle }), jsx("div", { className: "features-grid", children: section.features.map((feature, index) => (jsxs("div", { className: "feature-item", children: [feature.icon && (jsx("div", { className: "feature-icon", children: jsx("span", { children: feature.icon }) })), jsx("h3", { className: "feature-title", children: feature.title }), jsx("p", { className: "feature-description", children: feature.description })] }, index))) })] }) }));
-};
+        : {
+            backgroundColor,
+        };
+    const heroClasses = clsx("ma-hero", `ma-hero--${align}`, className);
+    const textColorStyle = textColor ? { color: textColor } : {};
+    return (jsxs("div", { className: heroClasses, style: Object.assign(Object.assign({ minHeight }, backgroundStyle), textColorStyle), children: [hasBackgroundImage && (jsx("div", { className: "ma-hero-overlay", style: { opacity: overlayOpacity } })), jsxs("div", { className: "ma-hero-content", children: [subtitle && jsx("p", { className: "ma-hero-subtitle", children: subtitle }), jsx("h1", { className: "ma-hero-title", children: title }), description && jsx("p", { className: "ma-hero-description", children: description }), (primaryButtonText || secondaryButtonText) && (jsxs("div", { className: "ma-hero-buttons", children: [primaryButtonText && (jsx(CustomButton, { text: primaryButtonText, variant: primaryButtonVariant, url: primaryButtonUrl, size: "lg" })), secondaryButtonText && (jsx(CustomButton, { text: secondaryButtonText, variant: secondaryButtonVariant, url: secondaryButtonUrl, size: "lg" }))] })), children] })] }));
+}
 
-export { CustomButton, SectionsRender };
+export { CustomButton, Hero };
 //# sourceMappingURL=index.esm.js.map
