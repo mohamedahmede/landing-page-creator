@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# rollup cache
+.rollup.cache/
+
+# build outputs
+dist/
+landing-page-creator-*.tgz
