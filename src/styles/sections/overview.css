@@ -1,0 +1,145 @@
+/* Overview Section Styles */
+.overview-section {
+    padding: 4rem 6rem;
+  }
+  
+  /* Header Styles */
+  .overview-header {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .overview-subtitle {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #4b5563;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .overview-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #111827;
+  }
+  
+  @media (min-width: 768px) {
+    .overview-title {
+      font-size: 3rem;
+    }
+  }
+  
+  /* Description Styles */
+  .overview-description {
+    margin-bottom: 3rem;
+  }
+  
+  .overview-description-content {
+    line-height: 1.75;
+  }
+  
+  .overview-description p {
+    font-size: 1.125rem;
+    color: #374151;
+  }
+  
+  /* Grid Styles */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* gap: 2rem; */
+    margin-bottom: 3rem;
+  }
+  
+  @media (min-width: 1024px) {
+    .overview-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Highlights Styles */
+  .overview-highlights {
+    background-color: #f9fafb;
+    /* border-radius: 0.5rem; */
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    padding: 1.5rem;
+  }
+  
+  .overview-highlights-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #111827;
+  }
+  
+  .overview-highlights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .overview-highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .overview-highlight-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .overview-highlight-icon {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dbeafe;
+    border-radius: 0.5rem;
+  }
+  
+  .overview-highlight-content {
+    flex: 1;
+  }
+  
+  .overview-highlight-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    margin-bottom: 0.25rem;
+  }
+  
+  .overview-highlight-value {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+  }
+  
+  /* Media Styles */
+  .overview-media {
+    /* border-radius: 0.5rem; */
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .overview-media img,
+  .overview-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .overview-media-caption {
+    font-size: 0.875rem;
+    color: #4b5563;
+    font-style: italic;
+    margin-top: 0.5rem;
+    padding: 0 0.5rem;
+  }
+  

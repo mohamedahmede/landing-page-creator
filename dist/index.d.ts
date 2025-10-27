@@ -8,7 +8,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     /** If true, skip all default styles and only use className (escape hatch) */
     unstyled?: boolean;
     className?: string;
-    text?: string;
+    text: string;
     url?: string;
     blank?: boolean;
     onClick?: () => void;
@@ -57,15 +57,67 @@ interface HeroProps {
 }
 declare function Hero({ title, subtitle, description, primaryButtonText, primaryButtonUrl, primaryButtonVariant, secondaryButtonText, secondaryButtonUrl, secondaryButtonVariant, backgroundColor, backgroundImage, overlayOpacity, textColor, align, minHeight, className, children, }: HeroProps): react_jsx_runtime.JSX.Element;
 
+interface StatItem {
+    label: string;
+    value: string | number;
+    unit?: string;
+}
+interface StatsGridProps {
+    stats: StatItem[];
+    columns?: 2 | 3 | 4;
+    className?: string;
+    showHover?: boolean;
+    noBorder?: boolean;
+    borderColor?: string;
+    textColor?: string;
+}
+declare const StatsGrid: React$1.FC<StatsGridProps>;
+
+interface HighlightItem {
+    label: string;
+    value: string;
+    icon?: React$1.ReactNode;
+}
+
+interface MediaItem {
+    type: "image" | "video";
+    src: string;
+    alt?: string;
+    caption?: string;
+}
+interface OverviewProps {
+    highlights?: HighlightItem[];
+    description?: string | React$1.ReactNode;
+    stats?: StatItem[];
+    media?: MediaItem;
+    className?: string;
+    title?: string;
+    subtitle?: string;
+    sectionBackground?: string;
+    titleClassName?: string;
+    subtitleClassName?: string;
+    descriptionClassName?: string;
+    highlightsClassName?: string;
+}
+declare const Overview: React$1.FC<OverviewProps>;
+
 type HeroSection = {
     type: "hero";
     content: HeroProps;
 };
-type SectionConfig = HeroSection;
+type StatsGridSection = {
+    type: "stats-grid";
+    content: StatsGridProps;
+};
+type OverviewSection = {
+    type: "overview";
+    content: OverviewProps;
+};
+type SectionConfig = HeroSection | StatsGridSection | OverviewSection;
 interface SectionsRendererProps {
     sections: SectionConfig[];
 }
 declare const SectionsRenderer: ({ sections }: SectionsRendererProps) => react_jsx_runtime.JSX.Element;
 
-export { CustomButton, Hero, SectionsRenderer };
-export type { HeroProps };
+export { CustomButton, Hero, Overview, SectionsRenderer, StatsGrid };
+export type { HeroProps, HighlightItem, MediaItem, OverviewProps, StatItem, StatsGridProps };

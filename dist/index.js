@@ -70,11 +70,42 @@ function Hero({ title, subtitle, description, primaryButtonText, primaryButtonUr
     return (jsxRuntime.jsxs("div", { className: heroClasses, style: Object.assign(Object.assign({ minHeight }, backgroundStyle), textColorStyle), children: [hasBackgroundImage && (jsxRuntime.jsx("div", { className: "ma-hero-overlay", style: { opacity: overlayOpacity } })), jsxRuntime.jsxs("div", { className: "ma-hero-content", children: [subtitle && jsxRuntime.jsx("p", { className: "ma-hero-subtitle", children: subtitle }), jsxRuntime.jsx("h1", { className: "ma-hero-title", children: title }), description && jsxRuntime.jsx("p", { className: "ma-hero-description", children: description }), (primaryButtonText || secondaryButtonText) && (jsxRuntime.jsxs("div", { className: "ma-hero-buttons", children: [primaryButtonText && (jsxRuntime.jsx(CustomButton, { text: primaryButtonText, variant: primaryButtonVariant, url: primaryButtonUrl, size: "lg" })), secondaryButtonText && (jsxRuntime.jsx(CustomButton, { text: secondaryButtonText, variant: secondaryButtonVariant, url: secondaryButtonUrl, size: "lg" }))] })), children] })] }));
 }
 
+const StatsGrid = ({ stats, columns = 4, className = "", showHover = false, noBorder = false, borderColor, textColor, }) => {
+    const columnsClass = `stats-grid-columns-${columns}`;
+    return (jsxRuntime.jsx("div", { className: `stats-grid ${columnsClass} ${className}`, children: stats.map((stat, index) => {
+            // Determine styles
+            const borderStyle = borderColor ? { borderColor } : undefined;
+            const textStyle = textColor ? { color: textColor } : undefined;
+            const labelStyle = textColor
+                ? { color: textColor, opacity: 0.7 }
+                : undefined;
+            // Build card classes
+            const cardClasses = [
+                "stat-card",
+                !noBorder ? "has-border" : "",
+                showHover ? "has-hover" : "",
+            ]
+                .filter(Boolean)
+                .join(" ");
+            return (jsxRuntime.jsxs("div", { className: cardClasses, style: Object.assign({}, borderStyle), children: [jsxRuntime.jsxs("div", { className: "stat-card-value", style: textStyle || undefined, children: [stat.value, stat.unit && (jsxRuntime.jsx("span", { className: "stat-card-unit", style: labelStyle, children: stat.unit }))] }), jsxRuntime.jsx("div", { className: "stat-card-label", style: labelStyle || undefined, children: stat.label })] }, index));
+        }) }));
+};
+
+const Overview = ({ highlights = [], description, stats = [], media, className = "", title, subtitle, sectionBackground, titleClassName = "", subtitleClassName = "", descriptionClassName = "", highlightsClassName = "", }) => {
+    return (jsxRuntime.jsxs("section", { className: `overview-section ${className}`, style: sectionBackground
+            ? { backgroundColor: sectionBackground }
+            : undefined, children: [(title || subtitle) && (jsxRuntime.jsxs("div", { className: "overview-header", children: [subtitle && (jsxRuntime.jsx("p", { className: `overview-subtitle ${subtitleClassName || ""}`, children: subtitle })), title && (jsxRuntime.jsx("h2", { className: `overview-title ${titleClassName || ""}`, children: title }))] })), description && (jsxRuntime.jsx("div", { className: `overview-description ${descriptionClassName || ""}`, children: jsxRuntime.jsx("div", { className: "overview-description-content", children: typeof description === "string" ? (jsxRuntime.jsx("p", { children: description })) : (description) }) })), jsxRuntime.jsxs("div", { className: "overview-grid", children: [highlights.length > 0 && (jsxRuntime.jsxs("div", { className: `overview-highlights ${highlightsClassName || ""}`, children: [jsxRuntime.jsx("h3", { className: "overview-highlights-title", children: "Key Highlights" }), jsxRuntime.jsx("div", { className: "overview-highlights-list", children: highlights.map((highlight, index) => (jsxRuntime.jsxs("div", { className: "overview-highlight-item", children: [highlight.icon && (jsxRuntime.jsx("div", { className: "overview-highlight-icon", children: highlight.icon })), jsxRuntime.jsxs("div", { className: "overview-highlight-content", children: [jsxRuntime.jsx("div", { className: "overview-highlight-label", children: highlight.label }), jsxRuntime.jsx("div", { className: "overview-highlight-value", children: highlight.value })] })] }, index))) })] })), media && (jsxRuntime.jsxs("div", { className: "overview-media", children: [media.type === "image" ? (jsxRuntime.jsx("img", { src: media.src, alt: media.alt || "Project overview", loading: "lazy", style: { width: "100%", height: "auto" } })) : (jsxRuntime.jsx("video", { src: media.src, controls: true, children: "Your browser does not support the video tag." })), media.caption && (jsxRuntime.jsx("p", { className: "overview-media-caption", children: media.caption }))] }))] }), stats.length > 0 && jsxRuntime.jsx(StatsGrid, { stats: stats })] }));
+};
+
 const SectionsRenderer = ({ sections }) => {
     return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: sections.map((section, index) => {
             switch (section.type) {
                 case "hero":
                     return jsxRuntime.jsx(Hero, Object.assign({}, section.content), index);
+                case "stats-grid":
+                    return jsxRuntime.jsx(StatsGrid, Object.assign({}, section.content), index);
+                case "overview":
+                    return jsxRuntime.jsx(Overview, Object.assign({}, section.content), index);
                 // Other sections commented out for now
                 // case "about":
                 // 	return <AboutSection key={index} {...section.content} />;
@@ -92,5 +123,7 @@ const SectionsRenderer = ({ sections }) => {
 
 exports.CustomButton = CustomButton;
 exports.Hero = Hero;
+exports.Overview = Overview;
 exports.SectionsRenderer = SectionsRenderer;
+exports.StatsGrid = StatsGrid;
 //# sourceMappingURL=index.js.map

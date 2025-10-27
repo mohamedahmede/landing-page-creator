@@ -1,10 +1,27 @@
 import { Hero, HeroProps } from "./sections/Hero";
+import StatsGrid from "./sections/StatsGrid";
+import type { StatsGridProps } from "./sections/StatsGrid";
+import Overview from "./sections/Overview";
+import type { OverviewProps } from "./sections/Overview";
 
 // Define individual section types with their specific content
 type HeroSection = {
 	type: "hero";
 	content: HeroProps;
 };
+
+type StatsGridSection = {
+	type: "stats-grid";
+	content: StatsGridProps;
+};
+
+type OverviewSection = {
+	type: "overview";
+	content: OverviewProps;
+};
+
+
+
 
 // Other sections commented out for now
 // type AboutSection = {
@@ -24,9 +41,9 @@ type HeroSection = {
 // };
 
 // Use discriminated union for type safety
-type SectionConfig = HeroSection;
+type SectionConfig = HeroSection | StatsGridSection | OverviewSection;
 // Add more sections when ready:
-// type SectionConfig = HeroSection | AboutSection | FeaturesSection;
+// type SectionConfig = HeroSection | StatsGridSection | OverviewSection | AboutSection | FeaturesSection;
 
 interface SectionsRendererProps {
 	sections: SectionConfig[];
@@ -39,6 +56,12 @@ const SectionsRenderer = ({ sections }: SectionsRendererProps) => {
 				switch (section.type) {
 					case "hero":
 						return <Hero key={index} {...section.content} />;
+					
+					case "stats-grid":
+						return <StatsGrid key={index} {...section.content} />;
+					
+					case "overview":
+						return <Overview key={index} {...section.content} />;
 
 					// Other sections commented out for now
 					// case "about":
