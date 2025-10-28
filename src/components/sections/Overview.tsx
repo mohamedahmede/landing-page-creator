@@ -35,6 +35,8 @@ export interface OverviewProps {
 	subtitleClassName?: string;
 	descriptionClassName?: string;
 	highlightsClassName?: string;
+	roundedCaption?: boolean;
+	mediaCaptionClassName?: string;
 }
 
 const Overview: React.FC<OverviewProps> = ({
@@ -50,6 +52,8 @@ const Overview: React.FC<OverviewProps> = ({
 	subtitleClassName = "",
 	descriptionClassName = "",
 	highlightsClassName = "",
+	roundedCaption = false,
+	mediaCaptionClassName = "",
 }) => {
 	return (
 		<section
@@ -134,7 +138,7 @@ const Overview: React.FC<OverviewProps> = ({
 							</video>
 						)}
 						{media.caption && (
-							<p className="overview-media-caption">
+							<p className={`overview-media-caption ${roundedCaption ? "rounded" : ""} ${mediaCaptionClassName || ""}`}>
 								{media.caption}
 							</p>
 						)}

@@ -14,6 +14,8 @@ A React component library for building beautiful landing pages with pre-styled c
 - [Components](#components)
   - [CustomButton](#custombutton)
   - [Hero](#hero)
+  - [StatsGrid](#statsgrid)
+  - [Overview](#overview)
   - [SectionsRenderer](#sectionsrenderer)
 - [License](#license)
 
@@ -56,15 +58,12 @@ import 'landing-page-creator/dist/styles.css';
 ## Quick Start
 
 ```tsx
-import { CustomButton, Hero } from 'landing-page-creator';
+import { CustomButton, Hero, StatsGrid, Overview } from 'landing-page-creator';
 import 'landing-page-creator/styles.css'; // ⚠️ Don't forget this!
 
 function App() {
   return (
     <div>
-      {/* Using CustomButton */}
-      <CustomButton variant="black" text="Click Me" />
-      
       {/* Using Hero section */}
       <Hero
         title="Welcome to Our Platform"
@@ -73,6 +72,33 @@ function App() {
         primaryButtonText="Get Started"
         primaryButtonUrl="/signup"
       />
+      
+      {/* Using StatsGrid */}
+      <StatsGrid 
+        stats={[
+          { label: "Happy Customers", value: "10K", unit: "+" },
+          { label: "Projects Completed", value: "500" },
+          { label: "Team Members", value: "50", unit: "+" },
+          { label: "Years of Experience", value: "10", unit: "+" }
+        ]}
+        columns={4}
+        showHover={true}
+      />
+      
+      {/* Using Overview */}
+      <Overview
+        title="About Our Platform"
+        subtitle="Innovation"
+        description="This is an amazing platform that solves real-world problems."
+        highlights={[
+          { label: "Fast", value: "Lightning Speed" },
+          { label: "Secure", value: "Enterprise Grade" },
+          { label: "Scalable", value: "Grows with You" }
+        ]}
+      />
+      
+      {/* Using CustomButton */}
+      <CustomButton variant="black" text="Click Me" />
     </div>
   );
 }
@@ -275,6 +301,210 @@ A full-width hero section component perfect for landing page headers. Supports b
 
 ---
 
+### StatsGrid
+
+A flexible statistics grid component for displaying key metrics and data points. Perfect for showcasing numbers, achievements, or statistics in a clean grid layout.
+
+#### Props
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `stats` | `StatItem[]` | - | ✅ | Array of stat items to display |
+| `columns` | `2 \| 3 \| 4` | `4` | ❌ | Number of columns in the grid |
+| `className` | `string` | - | ❌ | Additional CSS classes |
+| `showHover` | `boolean` | `false` | ❌ | Enable hover effects on cards |
+| `noBorder` | `boolean` | `false` | ❌ | Remove card borders |
+| `borderColor` | `string` | - | ❌ | Custom border color |
+| `textColor` | `string` | - | ❌ | Custom text color |
+
+#### StatItem Interface
+
+```tsx
+interface StatItem {
+  label: string;        // Stat label/title
+  value: string | number; // Stat value
+  unit?: string;        // Optional unit (e.g., "+", "/5", "%")
+}
+```
+
+#### Examples
+
+```tsx
+// Basic usage with 4 columns
+<StatsGrid 
+  stats={[
+    { label: "Happy Customers", value: "10K", unit: "+" },
+    { label: "Projects Completed", value: "500" },
+    { label: "Team Members", value: "50", unit: "+" },
+    { label: "Years of Experience", value: "10", unit: "+" }
+  ]} 
+/>
+
+// 3-column layout
+<StatsGrid 
+  stats={[
+    { label: "Downloads", value: "100K", unit: "+" },
+    { label: "Rating", value: "4.9", unit: "/5" },
+    { label: "Reviews", value: "2.5K", unit: "+" }
+  ]}
+  columns={3}
+/>
+
+// 2-column layout with hover effects
+<StatsGrid 
+  stats={[
+    { label: "Revenue", value: "$50M", unit: "+" },
+    { label: "Growth", value: "150%", unit: "" }
+  ]}
+  columns={2}
+  showHover={true}
+/>
+
+// Custom styling with colors
+<StatsGrid 
+  stats={[
+    { label: "Products", value: "1000", unit: "+" },
+    { label: "Countries", value: "50", unit: "+" }
+  ]}
+  borderColor="#007bff"
+  textColor="#212529"
+/>
+
+// Borderless stats
+<StatsGrid 
+  stats={[
+    { label: "Active Users", value: "25K", unit: "+" },
+    { label: "Uptime", value: "99.9", unit: "%" }
+  ]}
+  noBorder={true}
+/>
+```
+
+---
+
+### Overview
+
+A comprehensive overview section component that combines highlights, descriptions, media, and statistics. Perfect for project showcases, feature presentations, or product overviews.
+
+#### Props
+
+| Prop | Type | Default | Required | Description |
+|------|------|---------|----------|-------------|
+| `title` | `string` | - | ❌ | Main section title |
+| `subtitle` | `string` | - | ❌ | Subtitle text |
+| `description` | `string \| React.ReactNode` | - | ❌ | Description content (text or JSX) |
+| `highlights` | `HighlightItem[]` | `[]` | ❌ | Array of highlight items |
+| `stats` | `StatItem[]` | `[]` | ❌ | Array of stats (uses StatsGrid internally) |
+| `media` | `MediaItem` | - | ❌ | Media item (image or video) |
+| `className` | `string` | - | ❌ | Custom CSS class for section |
+| `sectionBackground` | `string` | - | ❌ | Section background color |
+| `titleClassName` | `string` | - | ❌ | Custom class for title |
+| `subtitleClassName` | `string` | - | ❌ | Custom class for subtitle |
+| `descriptionClassName` | `string` | - | ❌ | Custom class for description |
+| `highlightsClassName` | `string` | - | ❌ | Custom class for highlights |
+
+#### Interfaces
+
+```tsx
+interface HighlightItem {
+  label: string;
+  value: string;
+  icon?: React.ReactNode;  // Optional icon element
+}
+
+interface MediaItem {
+  type: "image" | "video";
+  src: string;
+  alt?: string;
+  caption?: string;
+}
+```
+
+#### Examples
+
+```tsx
+// Basic overview with title and description
+<Overview
+  title="About Our Project"
+  subtitle="Innovation"
+  description="This is an amazing project that solves real-world problems with cutting-edge technology."
+/>
+
+// With highlights
+<Overview
+  title="Key Features"
+  subtitle="Why Choose Us"
+  highlights={[
+    { label: "Fast Delivery", value: "24/7 Support" },
+    { label: "Secure", value: "SSL Encrypted" },
+    { label: "Scalable", value: "Grows with You" }
+  ]}
+/>
+
+// With media (image)
+<Overview
+  title="Our Dashboard"
+  description="Beautiful and intuitive interface"
+  media={{
+    type: "image",
+    src: "https://example.com/dashboard.jpg",
+    alt: "Dashboard screenshot",
+    caption: "Modern dashboard design"
+  }}
+/>
+
+// With video media
+<Overview
+  title="Product Demo"
+  subtitle="See It In Action"
+  media={{
+    type: "video",
+    src: "https://example.com/demo.mp4",
+    caption: "Full feature walkthrough"
+  }}
+/>
+
+// Complete overview with all features
+<Overview
+  title="Complete Solution"
+  subtitle="Enterprise Ready"
+  description="Everything you need in one place"
+  highlights={[
+    { label: "Integration", value: "100+ APIs" },
+    { label: "Security", value: "Enterprise Grade" },
+    { label: "Support", value: "24/7 Available" }
+  ]}
+  stats={[
+    { label: "Users", value: "10K", unit: "+" },
+    { label: "Satisfaction", value: "98", unit: "%" },
+    { label: "Uptime", value: "99.9", unit: "%" }
+  ]}
+  media={{
+    type: "image",
+    src: "https://example.com/solution.jpg",
+    alt: "Complete solution"
+  }}
+  sectionBackground="#f5f5f5"
+/>
+
+// With custom styling
+<Overview
+  title="Custom Styled"
+  subtitle="Personalized"
+  description="Fully customizable component"
+  highlights={[
+    { label: "Feature 1", value: "Value 1" },
+    { label: "Feature 2", value: "Value 2" }
+  ]}
+  className="my-overview"
+  titleClassName="custom-title"
+  descriptionClassName="custom-description"
+  backgroundColor="#ffffff"
+/>
+```
+
+---
+
 ### SectionsRenderer
 
 A utility component that renders multiple sections in a declarative way. Perfect for building complete landing pages with a consistent structure.
@@ -288,14 +518,14 @@ A utility component that renders multiple sections in a declarative way. Perfect
 #### Section Configuration
 
 Each section in the `sections` array must have:
-- `type`: The type of section (currently only `"hero"` is supported)
+- `type`: The type of section (`"hero"`, `"stats-grid"`, or `"overview"`)
 - `content`: The props for that section
 
 ```tsx
-type SectionConfig = {
-  type: "hero";
-  content: HeroProps;
-};
+type SectionConfig = 
+  | { type: "hero"; content: HeroProps }
+  | { type: "stats-grid"; content: StatsGridProps }
+  | { type: "overview"; content: OverviewProps };
 ```
 
 #### Examples
@@ -318,14 +548,38 @@ function LandingPage() {
       }
     },
     {
-      type: "hero" as const,
+      type: "stats-grid" as const,
       content: {
-        title: "Why Choose Us",
-        description: "Learn about our features and benefits",
-        align: "left",
-        backgroundColor: "#f5f5f5",
-        primaryButtonText: "Learn More",
-        primaryButtonUrl: "/features"
+        stats: [
+          { label: "Happy Customers", value: "10K", unit: "+" },
+          { label: "Projects Completed", value: "500" },
+          { label: "Team Members", value: "50", unit: "+" },
+          { label: "Years of Experience", value: "10", unit: "+" }
+        ],
+        columns: 4,
+        showHover: true
+      }
+    },
+    {
+      type: "overview" as const,
+      content: {
+        title: "About Our Project",
+        subtitle: "Innovation",
+        description: "This is an amazing project that solves real-world problems.",
+        highlights: [
+          { label: "Feature 1", value: "Value 1" },
+          { label: "Feature 2", value: "Value 2" },
+          { label: "Feature 3", value: "Value 3" }
+        ],
+        media: {
+          type: "image",
+          src: "https://example.com/image.jpg",
+          alt: "Project image"
+        },
+        stats: [
+          { label: "Downloads", value: "10K", unit: "+" },
+          { label: "Rating", value: "4.9", unit: "/5" }
+        ]
       }
     }
   ];

@@ -1,6 +1,6 @@
 /* Overview Section Styles */
 .overview-section {
-    padding: 4rem 6rem;
+    padding: 2rem 1rem;
   }
   
   /* Header Styles */
@@ -123,8 +123,7 @@
   /* Media Styles */
   .overview-media {
     /* border-radius: 0.5rem; */
-    border-top-right-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+    position: relative;
     overflow: hidden;
   }
   
@@ -139,7 +138,29 @@
     font-size: 0.875rem;
     color: #4b5563;
     font-style: italic;
-    margin-top: 0.5rem;
-    padding: 0 0.5rem;
+    position: absolute;
+    bottom: 1rem;
+    left: 2rem;
+    margin-right: 2rem;
+    background: white;
+    padding: 0.5rem 1rem;
+
+    &.rounded {
+      border-radius: 20rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .overview-section {
+      padding: 4rem 6rem;
+    }
+    .overview-media {
+        /* border-radius: 0.5rem; */
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        overflow: hidden;
+        bottom: 2rem;
+      }
+      
   }
   
