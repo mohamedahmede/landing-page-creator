@@ -35,6 +35,22 @@ export interface HeroProps {
 	align?: Alignment;
 	/** Minimum height */
 	minHeight?: string;
+	/** Horizontal padding (desktop) */
+	paddingX?: string;
+	/** Horizontal padding (mobile) */
+	paddingXMobile?: string;
+	/** Vertical padding (desktop) */
+	paddingY?: string;
+	/** Vertical padding (mobile) */
+	paddingYMobile?: string;
+	/** Top padding (desktop) */
+	paddingTop?: string;
+	/** Top padding (mobile) */
+	paddingTopMobile?: string;
+	/** Bottom padding (desktop) */
+	paddingBottom?: string;
+	/** Bottom padding (mobile) */
+	paddingBottomMobile?: string;
 	/** Custom className */
 	className?: string;
 	/** Additional content to render */
@@ -57,6 +73,14 @@ export function Hero({
 	textColor,
 	align = "center",
 	minHeight = "500px",
+	paddingX,
+	paddingXMobile,
+	paddingY,
+	paddingYMobile,
+	paddingTop,
+	paddingTopMobile,
+	paddingBottom,
+	paddingBottomMobile,
 	className,
 	children,
 }: HeroProps) {
@@ -75,6 +99,17 @@ export function Hero({
 	const heroClasses = clsx("ma-hero", `ma-hero--${align}`, className);
 	
 	const textColorStyle = textColor ? { color: textColor } : {};
+	
+	// Build padding styles
+	const paddingStyles: React.CSSProperties & Record<string, string> = {};
+	if (paddingX) paddingStyles['--padding-x'] = paddingX;
+	if (paddingXMobile) paddingStyles['--padding-x-mobile'] = paddingXMobile;
+	if (paddingY) paddingStyles['--padding-y'] = paddingY;
+	if (paddingYMobile) paddingStyles['--padding-y-mobile'] = paddingYMobile;
+	if (paddingTop) paddingStyles['--padding-top'] = paddingTop;
+	if (paddingTopMobile) paddingStyles['--padding-top-mobile'] = paddingTopMobile;
+	if (paddingBottom) paddingStyles['--padding-bottom'] = paddingBottom;
+	if (paddingBottomMobile) paddingStyles['--padding-bottom-mobile'] = paddingBottomMobile;
 
 	return (
 		<div className={heroClasses} style={{ minHeight, ...backgroundStyle, ...textColorStyle }}>
@@ -84,7 +119,8 @@ export function Hero({
 					style={{ opacity: overlayOpacity }}
 				/>
 			)}
-			<div className="ma-hero-content">
+			<div className="ma-hero-wrapper" style={paddingStyles}>
+				<div className="ma-hero-content">
 				{subtitle && <p className="ma-hero-subtitle">{subtitle}</p>}
 				<h1 className="ma-hero-title">{title}</h1>
 				{description && <p className="ma-hero-description">{description}</p>}
@@ -111,6 +147,7 @@ export function Hero({
 				)}
 				
 				{children}
+			</div>
 			</div>
 		</div>
 	);

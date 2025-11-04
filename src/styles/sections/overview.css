@@ -1,6 +1,39 @@
 /* Overview Section Styles */
 .overview-section {
-    padding: 2rem 1rem;
+    /* Background applied to section, no padding */
+  }
+
+  .overview-wrapper {
+    /* Default padding values */
+    --padding-x: 0;
+    --padding-x-mobile: 0;
+    --padding-y: 0;
+    --padding-y-mobile: 0;
+    /* padding-top and padding-bottom are only set via props, no default */
+    /* Use CSS variables for padding - fallback to paddingY if top/bottom not set */
+    padding-top: var(--padding-top, var(--padding-y, 0));
+    padding-bottom: var(--padding-bottom, var(--padding-y, 0));
+    padding-left: var(--padding-x, 0);
+    padding-right: var(--padding-x, 0);
+  }
+  
+  @media (max-width: 768px) {
+    .overview-wrapper {
+      padding-top: var(--padding-top-mobile, var(--padding-y-mobile, 0));
+      padding-bottom: var(--padding-bottom-mobile, var(--padding-y-mobile, 0));
+      padding-left: var(--padding-x-mobile, 0);
+      padding-right: var(--padding-x-mobile, 0);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .overview-wrapper {
+      /* Use desktop padding variables */
+      padding-top: var(--padding-top, var(--padding-y, 0));
+      padding-bottom: var(--padding-bottom, var(--padding-y, 0));
+      padding-left: var(--padding-x, 0);
+      padding-right: var(--padding-x, 0);
+    }
   }
   
   /* Header Styles */
@@ -48,12 +81,16 @@
     display: grid;
     grid-template-columns: 1fr;
     /* gap: 2rem; */
-    margin-bottom: 3rem;
   }
   
   @media (min-width: 1024px) {
     .overview-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+    .overview-media-caption {
+      left: 2rem;
+      margin-right: 2rem;
+
     }
   }
   
@@ -126,12 +163,22 @@
     position: relative;
     overflow: hidden;
   }
-  
+
   .overview-media img,
   .overview-media video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .overview-hover-animation img {
+    transition: transform 0.3s ease;
+  }
+
+  @media (hover: hover) {
+    .overview-hover-animation:hover img {
+      transform: scale(1.05);
+    }
   }
   
   .overview-media-caption {
@@ -140,8 +187,8 @@
     font-style: italic;
     position: absolute;
     bottom: 1rem;
-    left: 2rem;
-    margin-right: 2rem;
+    left: 1rem;
+    margin-right: 1rem;
     background: white;
     padding: 0.5rem 1rem;
 
@@ -151,15 +198,13 @@
   }
 
   @media (min-width: 1024px) {
-    .overview-section {
-      padding: 4rem 6rem;
-    }
+    /* Desktop padding handled by wrapper */
     .overview-media {
         /* border-radius: 0.5rem; */
         border-top-right-radius: 0.5rem;
         border-bottom-right-radius: 0.5rem;
         overflow: hidden;
-        bottom: 2rem;
+        bottom: 0;
       }
       
   }

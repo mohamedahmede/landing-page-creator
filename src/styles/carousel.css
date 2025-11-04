@@ -1,0 +1,440 @@
+/* Carousel Styles */
+.carousel-wrapper {
+    width: 100%;
+    position: relative;
+  }
+  
+  .main-carousel-wrapper {
+    margin-bottom: 0;
+  }
+  
+  .main-swiper {
+    width: 100%;
+    height: auto;
+  }
+  
+  .main-swiper .swiper-slide {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* If aspect ratio variable is provided, use it; otherwise default 16/9 */
+    aspect-ratio: var(--carousel-aspect-ratio, 16/9);
+  }
+  
+  /* Height overrides via CSS variables - apply to slide content only */
+  .main-swiper .swiper-slide {
+    height: var(--carousel-height, auto);
+    min-height: 200px;
+  }
+  
+  .main-swiper .swiper-slide > * {
+    height: 100%;
+  }
+  
+  /* Mobile height (default) */
+  .main-swiper .swiper-slide {
+    height: var(--carousel-height-mobile, var(--carousel-height, auto));
+  }
+  
+  /* Navigation Arrows - Mobile First (Default) */
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5) !important;
+    background-image: none !important;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0.5rem;
+    --swiper-navigation-size: 0.6rem;
+    top: 50%;
+    margin-top: -0.875rem;
+  }
+  
+  .swiper-button-next:hover,
+  .swiper-button-prev:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+  }
+  
+  
+  
+  
+  .swiper-button-next {
+    right: 1rem !important;
+  }
+  
+  .swiper-button-prev {
+    left: 1rem !important;
+  }
+  
+  /* Custom pagination container outside swiper */
+  .carousel-pagination-container {
+    position: relative;
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    padding: 0.5rem 0;
+    min-height: 2rem;
+  }
+  
+  .carousel-pagination-container .swiper-pagination {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: auto;
+    max-width: none;
+    margin: 0;
+    text-align: center;
+    top: 0;
+    bottom: auto;
+  }
+  
+  /* Add proper space below swiper to accommodate pagination */
+  .main-swiper {
+    position: relative;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  
+  .main-swiper-wrapper {
+    position: relative;
+  }
+  
+  .carousel-pagination-container .swiper-pagination-bullet {
+    background: #000;
+    opacity: 0.3;
+    width: 0.625rem;
+    height: 0.625rem;
+    transition: all 0.3s ease;
+    margin: 0 0.25rem;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .carousel-pagination-container .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: var(--carousel-active-color, #007bff);
+    transform: scale(1.2);
+    margin: 0 0.25rem;
+    vertical-align: middle;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  /* Thumbnail Carousel - Mobile First */
+  .thumbnail-carousel-wrapper {
+    width: 100%;
+    max-width: 75rem;
+    margin: 2rem auto 0 auto;
+    padding: 0 1.25rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Space between main carousel and thumbnails */
+  .carousel-wrapper:has(.thumbnail-carousel-wrapper) {
+    padding-bottom: 0;
+  }
+  
+  .carousel-wrapper:has(.thumbnail-carousel-wrapper) .main-carousel-wrapper {
+    margin-bottom: 0;
+  }
+  
+  .thumbnail-swiper {
+    width: 100%;
+    height: 3.75rem;
+  }
+  
+  .thumbnail-swiper .swiper-slide {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+    border: 0.125rem solid transparent;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    width: 6rem;
+    min-width: 6rem;
+    height: 3.5rem;
+    flex-shrink: 0;
+  }
+  
+  .thumbnail-swiper .swiper-slide:first-child,
+  .thumbnail-swiper .swiper-slide:last-child {
+    width: auto !important;
+  }
+  
+  .thumbnail-swiper .swiper-slide:hover {
+    opacity: 0.8;
+  }
+  
+  .thumbnail-swiper .swiper-slide-thumb-active {
+    opacity: 1;
+    border-color: var(--carousel-active-color, #007bff);
+  }
+  
+  /* Only the centered slide should be active when showing multiple slides */
+  .thumbnail-swiper .swiper-slide:not(.swiper-slide-thumb-active) {
+    opacity: 0.5;
+  }
+  
+  .thumbnail-slide {
+    width: 6rem;
+    height: 3.5rem;
+    min-width: 6rem;
+    min-height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .thumbnail-slide img,
+  .thumbnail-slide > * {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Desktop Styles - Min Width 1024px */
+  @media (min-width: 1024px) {
+    .main-swiper .swiper-slide {
+      height: var(--carousel-height-desktop, var(--carousel-height, auto));
+    }
+  
+    .swiper-button-next,
+    .swiper-button-prev {
+      width: 2.5rem;
+      height: 2.5rem;
+      --swiper-navigation-size: 0.7rem;
+      margin-top: -1.25rem;
+    }
+  
+    .swiper-button-next {
+      right: 2rem;
+    }
+  
+    .swiper-button-prev {
+      left: 2rem;
+    }
+  
+    .carousel-pagination-container .swiper-pagination-bullet {
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+  
+    .thumbnail-carousel-wrapper {
+      padding: 0 2.5rem;
+    }
+  
+    .thumbnail-swiper {
+      height: 6.25rem;
+    }
+  
+    .thumbnail-swiper .swiper-slide {
+      border-radius: 0.5rem;
+      width: 7rem;
+      min-width: 7rem;
+      height: 5rem;
+    }
+  
+    .thumbnail-slide {
+      width: 7rem;
+      height: 5rem;
+      min-width: 7rem;
+      min-height: 5rem;
+    }
+  }
+  
+  /* Thumbnail pagination positioning */
+  .carousel-wrapper:has(.thumbnail-carousel-wrapper) .swiper-pagination {
+    margin-top: 2rem;
+  }
+  
+  /* Space between main carousel and thumbnails */
+  .carousel-wrapper:has(.thumbnail-carousel-wrapper) .main-carousel-wrapper {
+    margin-bottom: 0;
+  }
+  
+  /* Dark Mode Support (Optional) */
+  @media (prefers-color-scheme: dark) {
+    .swiper-pagination-bullet {
+      background: #fff;
+      opacity: 0.3;
+    }
+  
+    .swiper-pagination-bullet-active {
+      background: #007bff;
+      opacity: 1;
+    }
+  }
+  
+  /* Fullscreen Modal */
+  .carousel-fullscreen-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  .carousel-fullscreen-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.05);
+  }
+  
+  .carousel-fullscreen-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .carousel-fullscreen-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 0.5rem;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  .carousel-fullscreen-close:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.05);
+  }
+  
+  .carousel-fullscreen-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .carousel-fullscreen-swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .carousel-fullscreen-swiper .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .carousel-fullscreen-swiper .swiper-slide > * {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 0.5rem;
+  }
+  
+  .carousel-fullscreen-swiper .swiper-button-next,
+  .carousel-fullscreen-swiper .swiper-button-prev {
+    color: white !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    z-index: 10001 !important;
+    position: absolute !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .carousel-fullscreen-swiper .swiper-button-next {
+    right: 2rem !important;
+  }
+  
+  .carousel-fullscreen-swiper .swiper-button-prev {
+    left: 2rem !important;
+  }
+  
+  .carousel-fullscreen-swiper .swiper-button-next::after,
+  .carousel-fullscreen-swiper .swiper-button-prev::after {
+    font-size: 1.2rem !important;
+    font-weight: bold !important;
+  }
+  
+  .carousel-fullscreen-swiper .swiper-button-next:hover,
+  .carousel-fullscreen-swiper .swiper-button-prev:hover {
+    background: rgba(0, 0, 0, 0.9) !important;
+  }
+  
+  /* Mobile adjustments for fullscreen */
+  @media (max-width: 768px) {
+    .carousel-fullscreen-btn {
+      width: 2.5rem;
+      height: 2.5rem;
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+  
+    .carousel-fullscreen-close {
+      width: 3rem;
+      height: 3rem;
+      top: 1rem;
+      right: 1rem;
+    }
+  
+    .carousel-fullscreen-swiper .swiper-button-next,
+    .carousel-fullscreen-swiper .swiper-button-prev {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+  

@@ -1,0 +1,194 @@
+/* Alternating Content Section */
+.alternating-content-section {
+    /* Background applied to section, no padding */
+  }
+
+  .alternating-content-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    /* Default padding values */
+    --padding-x: 0;
+    --padding-x-mobile: 0;
+    --padding-y: 0;
+    --padding-y-mobile: 0;
+    /* padding-top and padding-bottom are only set via props, no default */
+    /* Use CSS variables for padding - fallback to paddingY if top/bottom not set */
+    padding-top: var(--padding-top, var(--padding-y, 0));
+    padding-bottom: var(--padding-bottom, var(--padding-y, 0));
+    padding-left: var(--padding-x, 0);
+    padding-right: var(--padding-x, 0);
+  }
+  
+  @media (max-width: 768px) {
+    .alternating-content-wrapper {
+      padding-top: var(--padding-top-mobile, var(--padding-y-mobile, 0));
+      padding-bottom: var(--padding-bottom-mobile, var(--padding-y-mobile, 0));
+      padding-left: var(--padding-x-mobile, 0);
+      padding-right: var(--padding-x-mobile, 0);
+    }
+  }
+  
+  .alternating-content-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .alternating-content-subtitle {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6b7280; /* gray-500 */
+    margin-bottom: 0.5rem;
+  }
+  
+  .alternating-content-title {
+    font-size: 1.875rem;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #111827; /* gray-900 */
+  }
+  
+  @media (min-width: 768px) {
+    .alternating-content-title {
+      font-size: 2.25rem;
+    }
+  }
+  
+  .alternating-content-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  
+  .alternating-content-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  @media (min-width: 768px) {
+    .alternating-content-item {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  /* Image/Icon Section */
+  .alternating-content-media {
+    order: 2;
+  }
+  
+  @media (min-width: 768px) {
+    .alternating-content-media {
+      order: 0;
+    }
+    
+    .alternating-content-media-right {
+      padding-right: 2rem;
+    }
+    
+    .alternating-content-media-left {
+      padding-left: 2rem;
+    }
+  }
+  
+  .alternating-content-image-wrapper {
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .alternating-content-image-wrapper.alternating-content-image-rounded {
+    border-radius: 0.75rem;
+  }
+  
+  .alternating-content-image {
+    width: 100%;
+    height: 16rem;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    .alternating-content-image {
+      height: 20rem;
+    }
+  }
+
+  .alternating-content-hover-animation .alternating-content-image {
+    transition: transform 0.3s ease;
+  }
+
+  @media (hover: hover) {
+    .alternating-content-hover-animation:hover .alternating-content-image {
+      transform: scale(1.05);
+    }
+  }
+  
+  .alternating-content-icon-wrapper {
+    background: linear-gradient(to bottom right, #f3f4f6, #e5e7eb);
+    border-radius: 0.75rem;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+  }
+  
+  .alternating-content-icon {
+    font-size: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Content Section */
+  .alternating-content-text {
+    order: 1;
+  }
+  
+  @media (min-width: 768px) {
+    .alternating-content-text {
+      order: 0;
+    }
+    
+    .alternating-content-text-right {
+      padding-left: 2rem;
+    }
+    
+    .alternating-content-text-left {
+      padding-right: 2rem;
+    }
+  }
+  
+  .alternating-content-text-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .alternating-content-text-icon {
+    flex-shrink: 0;
+    font-size: 3rem;
+  }
+  
+  .alternating-content-item-title {
+    font-size: 1.5rem;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #111827; /* gray-900 */
+    margin-bottom: 0.75rem;
+  }
+  
+  @media (min-width: 768px) {
+    .alternating-content-item-title {
+      font-size: 1.875rem;
+    }
+  }
+  
+  .alternating-content-item-description {
+    color: #4b5563; /* gray-600 */
+    line-height: 1.75;
+  }
+  
+  
+  

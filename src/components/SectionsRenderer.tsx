@@ -3,6 +3,8 @@ import StatsGrid from "./sections/StatsGrid";
 import type { StatsGridProps } from "./sections/StatsGrid";
 import Overview from "./sections/Overview";
 import type { OverviewProps } from "./sections/Overview";
+import InfoWithImages from "./sections/InfoWithImages";
+import type { InfoWithImagesProps } from "./sections/InfoWithImages";
 
 // Define individual section types with their specific content
 type HeroSection = {
@@ -18,6 +20,11 @@ type StatsGridSection = {
 type OverviewSection = {
 	type: "overview";
 	content: OverviewProps;
+};
+
+type InfoWithImagesSection = {
+	type: "info-with-images";
+	content: InfoWithImagesProps;
 };
 
 
@@ -41,7 +48,7 @@ type OverviewSection = {
 // };
 
 // Use discriminated union for type safety
-type SectionConfig = HeroSection | StatsGridSection | OverviewSection;
+type SectionConfig = HeroSection | StatsGridSection | OverviewSection | InfoWithImagesSection;
 // Add more sections when ready:
 // type SectionConfig = HeroSection | StatsGridSection | OverviewSection | AboutSection | FeaturesSection;
 
@@ -62,6 +69,9 @@ const SectionsRenderer = ({ sections }: SectionsRendererProps) => {
 					
 					case "overview":
 						return <Overview key={index} {...section.content} />;
+
+					case "info-with-images":
+						return <InfoWithImages key={index} {...section.content} />;
 
 					// Other sections commented out for now
 					// case "about":

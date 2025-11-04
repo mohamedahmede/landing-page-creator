@@ -1,7 +1,5 @@
 import React from "react";
 import "../../styles/sections/overview.css";
-import StatsGrid from "./StatsGrid";
-import type { StatItem } from "./StatsGrid";
 
 // Interface for individual highlight items
 export interface HighlightItem {
@@ -9,9 +7,6 @@ export interface HighlightItem {
 	value: string;
 	icon?: React.ReactNode;
 }
-
-// Re-export StatItem type for backward compatibility
-export type { StatItem };
 
 // Interface for media item
 export interface MediaItem {
@@ -25,12 +20,32 @@ export interface MediaItem {
 export interface OverviewProps {
 	highlights?: HighlightItem[];
 	description?: string | React.ReactNode;
-	stats?: StatItem[];
 	media?: MediaItem;
 	className?: string;
 	title?: string;
 	subtitle?: string;
-	sectionBackground?: string;
+	/** Whether images should have hover scale animation (default: true) */
+	hoverAnimation?: boolean;
+	/** Background color */
+	backgroundColor?: string;
+	/** Background image URL */
+	backgroundImage?: string;
+	/** Horizontal padding (desktop) */
+	paddingX?: string;
+	/** Horizontal padding (mobile) */
+	paddingXMobile?: string;
+	/** Vertical padding (desktop) */
+	paddingY?: string;
+	/** Vertical padding (mobile) */
+	paddingYMobile?: string;
+	/** Top padding (desktop) */
+	paddingTop?: string;
+	/** Top padding (mobile) */
+	paddingTopMobile?: string;
+	/** Bottom padding (desktop) */
+	paddingBottom?: string;
+	/** Bottom padding (mobile) */
+	paddingBottomMobile?: string;
 	titleClassName?: string;
 	subtitleClassName?: string;
 	descriptionClassName?: string;
@@ -42,12 +57,21 @@ export interface OverviewProps {
 const Overview: React.FC<OverviewProps> = ({
 	highlights = [],
 	description,
-	stats = [],
 	media,
 	className = "",
 	title,
 	subtitle,
-	sectionBackground,
+	hoverAnimation = true,
+	backgroundColor,
+	backgroundImage,
+	paddingX,
+	paddingXMobile,
+	paddingY,
+	paddingYMobile,
+	paddingTop,
+	paddingTopMobile,
+	paddingBottom,
+	paddingBottomMobile,
 	titleClassName = "",
 	subtitleClassName = "",
 	descriptionClassName = "",
@@ -55,15 +79,33 @@ const Overview: React.FC<OverviewProps> = ({
 	roundedCaption = false,
 	mediaCaptionClassName = "",
 }) => {
+	// Build background styles
+	const backgroundStyle: React.CSSProperties = {};
+	if (backgroundImage) {
+		backgroundStyle.backgroundImage = `url(${backgroundImage})`;
+		backgroundStyle.backgroundSize = "cover";
+		backgroundStyle.backgroundPosition = "center";
+	} else if (backgroundColor) {
+		backgroundStyle.backgroundColor = backgroundColor;
+	}
+	
+	// Build padding styles
+	const paddingStyles: React.CSSProperties & Record<string, string> = {};
+	if (paddingX) paddingStyles['--padding-x'] = paddingX;
+	if (paddingXMobile) paddingStyles['--padding-x-mobile'] = paddingXMobile;
+	if (paddingY) paddingStyles['--padding-y'] = paddingY;
+	if (paddingYMobile) paddingStyles['--padding-y-mobile'] = paddingYMobile;
+	if (paddingTop) paddingStyles['--padding-top'] = paddingTop;
+	if (paddingTopMobile) paddingStyles['--padding-top-mobile'] = paddingTopMobile;
+	if (paddingBottom) paddingStyles['--padding-bottom'] = paddingBottom;
+	if (paddingBottomMobile) paddingStyles['--padding-bottom-mobile'] = paddingBottomMobile;
+
 	return (
 		<section
 			className={`overview-section ${className}`}
-			style={
-				sectionBackground
-					? { backgroundColor: sectionBackground }
-					: undefined
-			}
+			style={backgroundStyle}
 		>
+			<div className="overview-wrapper" style={paddingStyles}>
 			{/* Header */}
 			{(title || subtitle) && (
 				<div className="overview-header">
@@ -124,13 +166,13 @@ const Overview: React.FC<OverviewProps> = ({
 
 				{/* Media Section */}
 				{media && (
-					<div className="overview-media">
+					<div className={`overview-media ${hoverAnimation && media.type === "image" ? "overview-hover-animation" : ""}`}>
 						{media.type === "image" ? (
 							<img
 								src={media.src}
 								alt={media.alt || "Project overview"}
 								loading="lazy"
-								style={{ width: "100%", height: "auto" }}
+								style={{ width: "100%"}}
 							/>
 						) : (
 							<video src={media.src} controls>
@@ -145,11 +187,7 @@ const Overview: React.FC<OverviewProps> = ({
 					</div>
 				)}
 			</div>
-
-		
-
-			{/* Stats Grid */}
-			{stats.length > 0 && <StatsGrid stats={stats} />}
+			</div>
 		</section>
 	);
 };

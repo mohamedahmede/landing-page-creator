@@ -1,0 +1,265 @@
+/* Info With Image Section */
+.info-section {
+    /* Background applied to section, no padding */
+  }
+
+  .info-wrapper {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    /* Default padding values */
+    --padding-x: 0;
+    --padding-x-mobile: 0;
+    --padding-y: 0;
+    --padding-y-mobile: 0;
+    /* padding-top and padding-bottom are only set via props, no default */
+    /* Use CSS variables for padding - fallback to paddingY if top/bottom not set */
+    padding-top: var(--padding-top, var(--padding-y, 0));
+    padding-bottom: var(--padding-bottom, var(--padding-y, 0));
+    padding-left: var(--padding-x, 0);
+    padding-right: var(--padding-x, 0);
+  }
+  
+  @media (max-width: 768px) {
+    .info-wrapper {
+      padding-top: var(--padding-top-mobile, var(--padding-y-mobile, 0));
+      padding-bottom: var(--padding-bottom-mobile, var(--padding-y-mobile, 0));
+      padding-left: var(--padding-x-mobile, 0);
+      padding-right: var(--padding-x-mobile, 0);
+    }
+  }
+  
+  .info-grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  
+  @media (min-width: 1024px) {
+    .info-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  .info-collage {
+    position: relative;
+  }
+  
+  /* Single image layout */
+  .info-collage-single {
+    overflow: hidden;
+  }
+  
+  .info-collage-rounded .info-collage-single {
+    border-radius: 0.5rem;
+  }
+  
+  .info-collage-single img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Double image layout - side by side */
+  .info-collage-double {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    min-height: 400px;
+  }
+  
+  @media (min-width: 1024px) {
+    .info-collage-double {
+      min-height: 500px;
+    }
+  }
+  
+  .info-collage-double .info-collage-item {
+    overflow: hidden;
+    height: 100%;
+  }
+  
+  .info-collage-rounded .info-collage-double .info-collage-item {
+    border-radius: 0.5rem;
+  }
+  
+  .info-collage-double .info-collage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Triple image layout - L-shaped grid */
+  .info-collage-triple .info-collage-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  
+  .info-collage-large {
+    grid-row: span 2 / span 2;
+    overflow: hidden;
+  }
+  
+  .info-collage-item {
+    overflow: hidden;
+  }
+  
+  .info-collage-rounded .info-collage-large,
+  .info-collage-rounded .info-collage-item {
+    border-radius: 0.5rem;
+  }
+  
+  .info-collage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Hover animation for single image */
+  .info-collage-single .info-hover-animation {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+
+  .info-collage-single .info-hover-animation img {
+    transition: transform 0.3s ease;
+  }
+
+  /* Hover animation for individual items in double/triple layouts */
+  .info-collage-item.info-hover-animation img {
+    transition: transform 0.3s ease;
+  }
+
+  .info-collage-large.info-hover-animation img {
+    transition: transform 0.3s ease;
+  }
+
+  @media (hover: hover) {
+    .info-collage-single .info-hover-animation:hover img {
+      transform: scale(1.05);
+    }
+
+    .info-collage-item.info-hover-animation:hover img {
+      transform: scale(1.05);
+    }
+
+    .info-collage-large.info-hover-animation:hover img {
+      transform: scale(1.05);
+    }
+  }
+  
+  .info-content {
+    color: #374151; /* gray-700 */
+    order: 2; /* Below images on mobile */
+  }
+  
+  @media (min-width: 1024px) {
+    .info-content-right {
+      order: 1;
+    }
+    
+    .info-content-left {
+      order: 2;
+    }
+  }
+  
+  /* Image position - default left */
+  .info-collage-left {
+    order: 1; /* Above content on mobile */
+  }
+  
+  @media (min-width: 1024px) {
+    .info-collage-left {
+      order: 1;
+    }
+  }
+  
+  /* Image position right */
+  .info-collage-right {
+    order: 1; /* Above content on mobile */
+  }
+  
+  @media (min-width: 1024px) {
+    .info-collage-right {
+      order: 2;
+    }
+  }
+  
+  /* Content padding based on image position */
+  .info-content-right {
+    padding-right: 0;
+  }
+  
+  @media (min-width: 1024px) {
+    .info-content-right {
+      padding-right: 2rem;
+    }
+  }
+  
+  .info-content-left {
+    padding-left: 0;
+  }
+  
+  @media (min-width: 1024px) {
+    .info-content-left {
+      padding-left: 2rem;
+    }
+  }
+  
+  .info-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .info-eyebrow .bar {
+    height: 0.25rem;
+    width: 2.5rem;
+    background-color: #8b1c2f; /* deep rose */
+    border-radius: 9999px;
+  }
+  
+  .info-eyebrow .text {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.875rem;
+    color: #6b7280; /* gray-500 */
+  }
+  
+  .info-title {
+    font-size: 1.875rem;
+    line-height: 1.25;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    color: #0f172a; /* slate-900 */
+  }
+  
+  @media (min-width: 768px) {
+    .info-title {
+      font-size: 2.25rem;
+    }
+  }
+  
+  .info-paragraphs {
+    line-height: 1.8;
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .info-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  
+  

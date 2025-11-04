@@ -6,7 +6,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 4rem 2rem;
 	width: 100%;
 	color: #000000;
 
@@ -14,10 +13,33 @@
 	&:has(.ma-hero-overlay) {
 		color: #ffffff;
 	}
+}
 
-	/* Responsive */
+.ma-hero-wrapper {
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* Default padding values */
+	--padding-x: 0;
+	--padding-x-mobile: 0;
+	--padding-y: 0;
+	--padding-y-mobile: 0;
+	/* padding-top and padding-bottom are only set via props, no default */
+	/* Use CSS variables for padding - fallback to paddingY if top/bottom not set */
+	padding-top: var(--padding-top, var(--padding-y, 0));
+	padding-bottom: var(--padding-bottom, var(--padding-y, 0));
+	padding-left: var(--padding-x, 0);
+	padding-right: var(--padding-x, 0);
+
+	/* Responsive - apply mobile padding variables */
 	@media (max-width: 768px) {
-		padding: 3rem 1.5rem;
+		padding-top: var(--padding-top-mobile, var(--padding-y-mobile, 0));
+		padding-bottom: var(--padding-bottom-mobile, var(--padding-y-mobile, 0));
+		padding-left: var(--padding-x-mobile, 0);
+		padding-right: var(--padding-x-mobile, 0);
 	}
 }
 
@@ -36,6 +58,7 @@
 	z-index: 2;
 	max-width: 800px;
 	width: 100%;
+	margin: 0 auto;
 }
 
 /* Alignment */

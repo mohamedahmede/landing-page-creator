@@ -1,7 +1,31 @@
 /* Stats Grid Styles */
 .stats-grid {
+    /* Background applied to section, no padding */
+  }
+
+  .stats-grid-wrapper {
     display: grid;
     gap: 1rem;
+    /* Default padding values */
+    --padding-x: 0;
+    --padding-x-mobile: 0;
+    --padding-y: 0;
+    --padding-y-mobile: 0;
+    /* padding-top and padding-bottom are only set via props, no default */
+    /* Use CSS variables for padding - fallback to paddingY if top/bottom not set */
+    padding-top: var(--padding-top, var(--padding-y, 0));
+    padding-bottom: var(--padding-bottom, var(--padding-y, 0));
+    padding-left: var(--padding-x, 0);
+    padding-right: var(--padding-x, 0);
+  }
+  
+  @media (max-width: 768px) {
+    .stats-grid-wrapper {
+      padding-top: var(--padding-top-mobile, var(--padding-y-mobile, 0));
+      padding-bottom: var(--padding-bottom-mobile, var(--padding-y-mobile, 0));
+      padding-left: var(--padding-x-mobile, 0);
+      padding-right: var(--padding-x-mobile, 0);
+    }
   }
   
   .stats-grid-columns-2 {
@@ -31,7 +55,7 @@
   }
   
   @media (min-width: 1024px) {
-    .stats-grid {
+    .stats-grid-wrapper {
       gap: 1.5rem;
     }
   }
