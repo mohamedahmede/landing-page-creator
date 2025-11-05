@@ -5,6 +5,14 @@ import Overview from "./sections/Overview";
 import type { OverviewProps } from "./sections/Overview";
 import InfoWithImages from "./sections/InfoWithImages";
 import type { InfoWithImagesProps } from "./sections/InfoWithImages";
+import ImageCardGrid from "./sections/ImageCardGrid";
+import type { ImageCardGridProps } from "./sections/ImageCardGrid";
+import AlternatingContentSection from "./sections/AlternatingContentSection";
+import type { AlternatingContentSectionProps } from "./sections/AlternatingContentSection";
+import { Footer } from "./sections/Footer";
+import type { FooterProps } from "./sections/Footer";
+import { StickyNav } from "./sections/StickyNav";
+import type { StickyNavProps } from "./sections/StickyNav";
 
 // Define individual section types with their specific content
 type HeroSection = {
@@ -25,6 +33,26 @@ type OverviewSection = {
 type InfoWithImagesSection = {
 	type: "info-with-images";
 	content: InfoWithImagesProps;
+};
+
+type ImageCardGridSection = {
+	type: "image-card-grid";
+	content: ImageCardGridProps;
+};
+
+type AlternatingContentSectionType = {
+	type: "alternating-content";
+	content: AlternatingContentSectionProps;
+};
+
+type FooterSection = {
+	type: "footer";
+	content: FooterProps;
+};
+
+type StickyNavSection = {
+	type: "sticky-nav";
+	content: StickyNavProps;
 };
 
 
@@ -48,7 +76,7 @@ type InfoWithImagesSection = {
 // };
 
 // Use discriminated union for type safety
-type SectionConfig = HeroSection | StatsGridSection | OverviewSection | InfoWithImagesSection;
+type SectionConfig = HeroSection | StatsGridSection | OverviewSection | InfoWithImagesSection | ImageCardGridSection | AlternatingContentSectionType | FooterSection | StickyNavSection;
 // Add more sections when ready:
 // type SectionConfig = HeroSection | StatsGridSection | OverviewSection | AboutSection | FeaturesSection;
 
@@ -72,6 +100,18 @@ const SectionsRenderer = ({ sections }: SectionsRendererProps) => {
 
 					case "info-with-images":
 						return <InfoWithImages key={index} {...section.content} />;
+
+					case "image-card-grid":
+						return <ImageCardGrid key={index} {...section.content} />;
+
+					case "alternating-content":
+						return <AlternatingContentSection key={index} {...section.content} />;
+
+					case "footer":
+						return <Footer key={index} {...section.content} />;
+
+					case "sticky-nav":
+						return <StickyNav key={index} {...section.content} />;
 
 					// Other sections commented out for now
 					// case "about":

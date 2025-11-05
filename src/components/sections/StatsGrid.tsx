@@ -84,7 +84,7 @@ const StatsGrid: React.FC<StatsGridProps> = ({
 	return (
 		<section
 			className={`stats-grid ${className}`}
-			style={backgroundStyle}
+			style={backgroundStyle} 
 		>
 			<div className={`stats-grid-wrapper ${columnsClass}`} style={paddingStyles}>
 				{stats.map((stat, index) => {

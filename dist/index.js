@@ -2,6 +2,27 @@
 
 var jsxRuntime = require('react/jsx-runtime');
 var React = require('react');
+var formik = require('formik');
+var Yup = require('yup');
+
+function _interopNamespaceDefault(e) {
+    var n = Object.create(null);
+    if (e) {
+        Object.keys(e).forEach(function (k) {
+            if (k !== 'default') {
+                var d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: function () { return e[k]; }
+                });
+            }
+        });
+    }
+    n.default = e;
+    return Object.freeze(n);
+}
+
+var Yup__namespace = /*#__PURE__*/_interopNamespaceDefault(Yup);
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -6795,40 +6816,6 @@ const Carousel = ({ children, autoplay = false, showThumbnails = true, showArrow
                         }, "aria-label": "Close fullscreen", children: jsxRuntime.jsxs("svg", { width: "32", height: "32", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", children: [jsxRuntime.jsx("line", { x1: "18", y1: "6", x2: "6", y2: "18" }), jsxRuntime.jsx("line", { x1: "6", y1: "6", x2: "18", y2: "18" })] }) }), jsxRuntime.jsx("div", { onClick: (e) => e.stopPropagation(), className: "carousel-fullscreen-content", children: jsxRuntime.jsx(Swiper, { modules: [Navigation, Pagination, Autoplay], spaceBetween: 0, slidesPerView: 1, navigation: true, pagination: true, autoplay: false, loop: loop, className: "carousel-fullscreen-swiper", children: children.map((child, index) => (jsxRuntime.jsx(SwiperSlide, { children: child }, `fullscreen-slide-${index}`))) }) })] }))] }));
 };
 
-const SectionsRenderer = ({ sections }) => {
-    return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: sections.map((section, index) => {
-            switch (section.type) {
-                case "hero":
-                    return jsxRuntime.jsx(Hero, Object.assign({}, section.content), index);
-                case "stats-grid":
-                    return jsxRuntime.jsx(StatsGrid, Object.assign({}, section.content), index);
-                case "overview":
-                    return jsxRuntime.jsx(Overview, Object.assign({}, section.content), index);
-                case "info-with-images":
-                    return jsxRuntime.jsx(InfoWithImages, Object.assign({}, section.content), index);
-                // Other sections commented out for now
-                // case "about":
-                // 	return <AboutSection key={index} {...section.content} />;
-                // case "features":
-                // 	return <FeaturesSection key={index} {...section.content} />;
-                // case "testimonials":
-                // 	return <TestimonialsSection key={index} {...section.content} />;
-                // case "contact":
-                // 	return <ContactSection key={index} {...section.content} />;
-                default:
-                    return null;
-            }
-        }) }));
-};
-
-function Card({ title, description, imageSrc, imageAlt, ctaText, ctaHref = "#", ctaVariant = "red", ctaSize = "md", ctaShape = "rounded", ctaBlank, variant = "neutral", rounded = true, hoverAnimation = true, shadowOnHover = true, className = "", }) {
-    const variantClass = variant || "neutral";
-    const roundedClass = rounded ? "" : "not-rounded";
-    const hoverClass = hoverAnimation ? "card-hover-animation" : "";
-    const shadowClass = shadowOnHover ? "card-shadow-hover" : "";
-    return (jsxRuntime.jsxs("div", { className: ["card", variantClass, roundedClass, hoverClass, shadowClass, className].filter(Boolean).join(" "), children: [imageSrc ? (jsxRuntime.jsx("div", { className: "media", children: jsxRuntime.jsx("img", { src: imageSrc, alt: imageAlt || title }) })) : null, jsxRuntime.jsxs("div", { className: "content", children: [jsxRuntime.jsx("h3", { className: "title", children: title }), description ? jsxRuntime.jsx("p", { className: "desc", children: description }) : null, ctaText ? (jsxRuntime.jsx("div", { className: "ctaWrap", children: jsxRuntime.jsx(CustomButton, { text: ctaText, url: ctaHref, variant: ctaVariant, size: ctaSize, shape: ctaShape, blank: ctaBlank, unstyled: true, className: "cta" }) })) : null] })] }));
-}
-
 function Footer({ brandName, logoUrl, logoAlt, description, columns = [], socialLinks = [], copyright, backgroundColor = "#111827", textColor = "#ffffff", linkColor, linkHoverColor, className, children, }) {
     const footerClasses = clsx("ma-footer", className);
     const footerStyle = {
@@ -6922,11 +6909,295 @@ function StickyNav({ logoUrl, logoAlt, brandName, links = [], ctaText, ctaUrl, c
     return (jsxRuntime.jsx("nav", { className: navClasses, style: navStyle, children: jsxRuntime.jsxs("div", { className: "ma-sticky-nav-container", children: [jsxRuntime.jsx("a", { href: "/", className: "ma-sticky-nav-brand", style: linkStyle, children: logoUrl ? (jsxRuntime.jsx("img", { src: logoUrl, alt: logoAlt || brandName || "Logo", className: "ma-sticky-nav-logo" })) : brandName ? (jsxRuntime.jsx("span", { className: "ma-sticky-nav-brand-name", children: brandName })) : null }), jsxRuntime.jsxs("div", { className: "ma-sticky-nav-desktop", children: [links.length > 0 && (jsxRuntime.jsx("ul", { className: "ma-sticky-nav-links", children: links.map((link, index) => (jsxRuntime.jsx("li", { children: jsxRuntime.jsx("a", { href: link.url, target: link.target || "_self", className: "ma-sticky-nav-link", style: linkStyle, children: link.text }) }, index))) })), ctaText && (jsxRuntime.jsx(CustomButton, { text: ctaText, url: ctaUrl, variant: ctaVariant, size: "md" }))] }), jsxRuntime.jsxs("button", { className: clsx("ma-sticky-nav-toggle", isMobileMenuOpen && "ma-sticky-nav-toggle--active"), onClick: () => setIsMobileMenuOpen(!isMobileMenuOpen), "aria-label": "Toggle menu", style: toggleButtonStyle, children: [jsxRuntime.jsx("span", {}), jsxRuntime.jsx("span", {}), jsxRuntime.jsx("span", {})] }), isMobileMenuOpen && (jsxRuntime.jsx("div", { className: "ma-sticky-nav-backdrop", onClick: () => setIsMobileMenuOpen(false) })), jsxRuntime.jsxs("div", { className: clsx("ma-sticky-nav-mobile", isMobileMenuOpen && "ma-sticky-nav-mobile--open"), style: mobileMenuStyle, children: [links.length > 0 && (jsxRuntime.jsx("ul", { className: "ma-sticky-nav-links", children: links.map((link, index) => (jsxRuntime.jsx("li", { children: jsxRuntime.jsx("a", { href: link.url, target: link.target || "_self", className: "ma-sticky-nav-link", style: mobileLinkStyle, onClick: () => setIsMobileMenuOpen(false), children: link.text }) }, index))) })), ctaText && (jsxRuntime.jsx("div", { className: "ma-sticky-nav-mobile-cta", children: jsxRuntime.jsx(CustomButton, { text: ctaText, url: ctaUrl, variant: ctaVariant, size: "md" }) }))] })] }) }));
 }
 
+const SectionsRenderer = ({ sections }) => {
+    return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: sections.map((section, index) => {
+            switch (section.type) {
+                case "hero":
+                    return jsxRuntime.jsx(Hero, Object.assign({}, section.content), index);
+                case "stats-grid":
+                    return jsxRuntime.jsx(StatsGrid, Object.assign({}, section.content), index);
+                case "overview":
+                    return jsxRuntime.jsx(Overview, Object.assign({}, section.content), index);
+                case "info-with-images":
+                    return jsxRuntime.jsx(InfoWithImages, Object.assign({}, section.content), index);
+                case "image-card-grid":
+                    return jsxRuntime.jsx(ImageCardGrid, Object.assign({}, section.content), index);
+                case "alternating-content":
+                    return jsxRuntime.jsx(AlternatingContentSection, Object.assign({}, section.content), index);
+                case "footer":
+                    return jsxRuntime.jsx(Footer, Object.assign({}, section.content), index);
+                case "sticky-nav":
+                    return jsxRuntime.jsx(StickyNav, Object.assign({}, section.content), index);
+                // Other sections commented out for now
+                // case "about":
+                // 	return <AboutSection key={index} {...section.content} />;
+                // case "features":
+                // 	return <FeaturesSection key={index} {...section.content} />;
+                // case "testimonials":
+                // 	return <TestimonialsSection key={index} {...section.content} />;
+                // case "contact":
+                // 	return <ContactSection key={index} {...section.content} />;
+                default:
+                    return null;
+            }
+        }) }));
+};
+
+function Card({ title, description, imageSrc, imageAlt, ctaText, ctaHref = "#", ctaVariant = "red", ctaSize = "md", ctaShape = "rounded", ctaBlank, variant = "neutral", rounded = true, hoverAnimation = true, shadowOnHover = true, className = "", }) {
+    const variantClass = variant || "neutral";
+    const roundedClass = rounded ? "" : "not-rounded";
+    const hoverClass = hoverAnimation ? "card-hover-animation" : "";
+    const shadowClass = shadowOnHover ? "card-shadow-hover" : "";
+    return (jsxRuntime.jsxs("div", { className: ["card", variantClass, roundedClass, hoverClass, shadowClass, className].filter(Boolean).join(" "), children: [imageSrc ? (jsxRuntime.jsx("div", { className: "media", children: jsxRuntime.jsx("img", { src: imageSrc, alt: imageAlt || title }) })) : null, jsxRuntime.jsxs("div", { className: "content", children: [jsxRuntime.jsx("h3", { className: "title", children: title }), description ? jsxRuntime.jsx("p", { className: "desc", children: description }) : null, ctaText ? (jsxRuntime.jsx("div", { className: "ctaWrap", children: jsxRuntime.jsx(CustomButton, { text: ctaText, url: ctaHref, variant: ctaVariant, size: ctaSize, shape: ctaShape, blank: ctaBlank, unstyled: true, className: "cta" }) })) : null] })] }));
+}
+
+const FormField = (_a) => {
+    var { label, placeholder, helperText, className, required, disabled, renderInput, showError = true, type = "text", rows, options, multiple, accept } = _a, props = __rest(_a, ["label", "placeholder", "helperText", "className", "required", "disabled", "renderInput", "showError", "type", "rows", "options", "multiple", "accept"]);
+    const [field, meta, helpers] = formik.useField(props);
+    const hasError = meta.touched && meta.error;
+    const fieldId = `field-${field.name}`;
+    const renderField = () => {
+        if (renderInput) {
+            return renderInput(Object.assign(Object.assign(Object.assign({}, field), props), { id: fieldId, disabled }));
+        }
+        switch (type) {
+            case "textarea":
+                return (jsxRuntime.jsx("textarea", Object.assign({}, field, props, { id: fieldId, placeholder: placeholder, disabled: disabled, rows: rows || 4, className: clsx("reusable-form__input", "reusable-form__textarea", className, {
+                        "reusable-form__input--error": hasError,
+                        "reusable-form__input--disabled": disabled,
+                    }) })));
+            case "select":
+                return (jsxRuntime.jsxs("select", Object.assign({}, field, props, { id: fieldId, disabled: disabled, multiple: multiple, className: clsx("reusable-form__input", "reusable-form__select", className, {
+                        "reusable-form__input--error": hasError,
+                        "reusable-form__input--disabled": disabled,
+                    }), children: [placeholder && jsxRuntime.jsx("option", { value: "", children: placeholder }), options === null || options === void 0 ? void 0 : options.map((option) => (jsxRuntime.jsx("option", { value: option.value, children: option.label }, option.value)))] })));
+            case "checkbox":
+                return (jsxRuntime.jsxs("div", { className: "reusable-form__checkbox-wrapper", children: [jsxRuntime.jsx("input", Object.assign({}, field, props, { id: fieldId, type: "checkbox", checked: field.value || false, disabled: disabled, className: clsx("reusable-form__checkbox", className, {
+                                "reusable-form__checkbox--error": hasError,
+                                "reusable-form__checkbox--disabled": disabled,
+                            }) })), label && (jsxRuntime.jsxs("label", { htmlFor: fieldId, className: "reusable-form__checkbox-label", children: [label, required && jsxRuntime.jsx("span", { className: "reusable-form__required", children: "*" })] }))] }));
+            case "radio":
+                if (!options)
+                    return null;
+                return (jsxRuntime.jsx("div", { className: "reusable-form__radio-group", children: options.map((option) => {
+                        const radioId = `${fieldId}-${option.value}`;
+                        return (jsxRuntime.jsxs("div", { className: "reusable-form__radio-wrapper", children: [jsxRuntime.jsx("input", Object.assign({}, field, props, { id: radioId, type: "radio", value: option.value, checked: field.value === option.value, disabled: disabled, className: clsx("reusable-form__radio", className, {
+                                        "reusable-form__radio--error": hasError,
+                                        "reusable-form__radio--disabled": disabled,
+                                    }) })), jsxRuntime.jsx("label", { htmlFor: radioId, className: "reusable-form__radio-label", children: option.label })] }, option.value));
+                    }) }));
+            case "file":
+                return (jsxRuntime.jsxs("div", { className: "reusable-form__file-wrapper", children: [jsxRuntime.jsx("input", Object.assign({}, field, props, { id: fieldId, type: "file", accept: accept, multiple: multiple, disabled: disabled, onChange: (e) => {
+                                var _a;
+                                const file = (_a = e.target.files) === null || _a === void 0 ? void 0 : _a[0];
+                                helpers.setValue(file || null);
+                                field.onChange(e);
+                            }, className: clsx("reusable-form__file", className, {
+                                "reusable-form__file--error": hasError,
+                                "reusable-form__file--disabled": disabled,
+                            }) })), field.value && (jsxRuntime.jsx("div", { className: "reusable-form__file-name", children: field.value instanceof File ? field.value.name : "File selected" }))] }));
+            default:
+                return (jsxRuntime.jsx("input", Object.assign({}, field, props, { id: fieldId, type: type, placeholder: placeholder, disabled: disabled, className: clsx("reusable-form__input", className, {
+                        "reusable-form__input--error": hasError,
+                        "reusable-form__input--disabled": disabled,
+                    }) })));
+        }
+    };
+    // For checkbox and radio, label is rendered differently
+    if (type === "checkbox" || type === "radio") {
+        return (jsxRuntime.jsxs("div", { className: clsx("reusable-form__field", className), children: [renderField(), showError && hasError && (jsxRuntime.jsx("div", { className: "reusable-form__error", children: meta.error })), helperText && !hasError && (jsxRuntime.jsx("div", { className: "reusable-form__helper", children: helperText }))] }));
+    }
+    return (jsxRuntime.jsxs("div", { className: clsx("reusable-form__field", className), children: [label && (jsxRuntime.jsxs("label", { htmlFor: fieldId, className: "reusable-form__label", children: [label, required && jsxRuntime.jsx("span", { className: "reusable-form__required", children: "*" })] })), renderField(), showError && hasError && (jsxRuntime.jsx("div", { className: "reusable-form__error", children: meta.error })), helperText && !hasError && (jsxRuntime.jsx("div", { className: "reusable-form__helper", children: helperText }))] }));
+};
+
+/**
+ * Automatically builds a Yup validation schema from field configurations
+ */
+const buildValidationSchema = (fields) => {
+    const schema = {};
+    fields.forEach((field) => {
+        var _a, _b, _c, _d, _e, _f;
+        let fieldSchema;
+        // Determine base schema type based on field type
+        switch (field.type) {
+            case "email":
+                fieldSchema = Yup__namespace.string().email(((_a = field.validation) === null || _a === void 0 ? void 0 : _a.message) || "Invalid email address");
+                break;
+            case "number":
+                fieldSchema = Yup__namespace.number().typeError(((_b = field.validation) === null || _b === void 0 ? void 0 : _b.message) || "Must be a number");
+                break;
+            case "url":
+                fieldSchema = Yup__namespace.string().url(((_c = field.validation) === null || _c === void 0 ? void 0 : _c.message) || "Invalid URL");
+                break;
+            case "checkbox":
+                fieldSchema = Yup__namespace.boolean();
+                break;
+            case "file":
+                fieldSchema = Yup__namespace.mixed();
+                break;
+            case "date":
+                fieldSchema = Yup__namespace.date().typeError(((_d = field.validation) === null || _d === void 0 ? void 0 : _d.message) || "Invalid date");
+                break;
+            default:
+                fieldSchema = Yup__namespace.string();
+        }
+        // Apply validation rules
+        if (field.validation) {
+            const rules = field.validation;
+            if (rules.min !== undefined) {
+                if (field.type === "number") {
+                    fieldSchema = fieldSchema.min(rules.min, rules.message || `Must be at least ${rules.min}`);
+                }
+                else {
+                    fieldSchema = fieldSchema.min(rules.min, rules.message || `Must be at least ${rules.min} characters`);
+                }
+            }
+            if (rules.max !== undefined) {
+                if (field.type === "number") {
+                    fieldSchema = fieldSchema.max(rules.max, rules.message || `Must be at most ${rules.max}`);
+                }
+                else {
+                    fieldSchema = fieldSchema.max(rules.max, rules.message || `Must be at most ${rules.max} characters`);
+                }
+            }
+            if (rules.pattern) {
+                fieldSchema = fieldSchema.matches(rules.pattern, rules.patternMessage || rules.message || "Invalid format");
+            }
+            if (rules.validate) {
+                fieldSchema = fieldSchema.test("custom", rules.message || "Validation failed", function (value) {
+                    const result = rules.validate(value);
+                    if (result === false) {
+                        return false;
+                    }
+                    if (typeof result === "string") {
+                        return this.createError({ message: result });
+                    }
+                    return true;
+                });
+            }
+        }
+        // Apply required validation
+        if (field.required) {
+            if (field.type === "checkbox") {
+                fieldSchema = fieldSchema.oneOf([true], field.requiredMessage || ((_e = field.validation) === null || _e === void 0 ? void 0 : _e.message) || "This field is required");
+            }
+            else {
+                fieldSchema = fieldSchema.required(field.requiredMessage || ((_f = field.validation) === null || _f === void 0 ? void 0 : _f.message) || `${field.label || field.name} is required`);
+            }
+        }
+        else {
+            fieldSchema = fieldSchema.nullable().optional();
+        }
+        schema[field.name] = fieldSchema;
+    });
+    return Yup__namespace.object().shape(schema);
+};
+const Form = ({ initialValues, validationSchema, onSubmit, fields, title, description, image, imagePosition = "left", imageAlt, imageRounded = true, submitText = "Submit", submitVariant = "black", submitSize = "md", renderSubmitButton, formikConfig, className, loading = false, renderField, layout = "vertical", showLabels = true, backgroundColor, backgroundImage, paddingX, paddingXMobile, paddingY, paddingYMobile, paddingTop, paddingTopMobile, paddingBottom, paddingBottomMobile, contentPaddingX, contentPaddingXMobile, contentPaddingY, contentPaddingYMobile, contentPaddingTop, contentPaddingTopMobile, contentPaddingBottom, contentPaddingBottomMobile, }) => {
+    // Auto-generate validation schema from fields if not provided
+    const schema = validationSchema || buildValidationSchema(fields);
+    // Build section styles
+    const sectionStyle = {};
+    if (backgroundImage) {
+        sectionStyle.backgroundImage = `url(${backgroundImage})`;
+        sectionStyle.backgroundSize = "cover";
+        sectionStyle.backgroundPosition = "center";
+    }
+    else if (backgroundColor) {
+        sectionStyle.backgroundColor = backgroundColor;
+    }
+    // Build section padding styles
+    if (paddingX)
+        sectionStyle['--padding-x'] = paddingX;
+    if (paddingXMobile)
+        sectionStyle['--padding-x-mobile'] = paddingXMobile;
+    if (paddingY)
+        sectionStyle['--padding-y'] = paddingY;
+    if (paddingYMobile)
+        sectionStyle['--padding-y-mobile'] = paddingYMobile;
+    if (paddingTop)
+        sectionStyle['--padding-top'] = paddingTop;
+    if (paddingTopMobile)
+        sectionStyle['--padding-top-mobile'] = paddingTopMobile;
+    if (paddingBottom)
+        sectionStyle['--padding-bottom'] = paddingBottom;
+    if (paddingBottomMobile)
+        sectionStyle['--padding-bottom-mobile'] = paddingBottomMobile;
+    // Build content padding styles (for form wrapper - excludes image)
+    const contentPaddingStyles = {};
+    if (contentPaddingX)
+        contentPaddingStyles['--content-padding-x'] = contentPaddingX;
+    if (contentPaddingXMobile)
+        contentPaddingStyles['--content-padding-x-mobile'] = contentPaddingXMobile;
+    if (contentPaddingY)
+        contentPaddingStyles['--content-padding-y'] = contentPaddingY;
+    if (contentPaddingYMobile)
+        contentPaddingStyles['--content-padding-y-mobile'] = contentPaddingYMobile;
+    if (contentPaddingTop)
+        contentPaddingStyles['--content-padding-top'] = contentPaddingTop;
+    if (contentPaddingTopMobile)
+        contentPaddingStyles['--content-padding-top-mobile'] = contentPaddingTopMobile;
+    if (contentPaddingBottom)
+        contentPaddingStyles['--content-padding-bottom'] = contentPaddingBottom;
+    if (contentPaddingBottomMobile)
+        contentPaddingStyles['--content-padding-bottom-mobile'] = contentPaddingBottomMobile;
+    const hasImage = !!image;
+    const imagePositionClass = hasImage ? `form-section--image-${imagePosition}` : "";
+    const formContent = (jsxRuntime.jsx(formik.Formik, Object.assign({ initialValues: initialValues, validationSchema: schema, onSubmit: onSubmit }, formikConfig, { children: (formik$1) => (jsxRuntime.jsxs(formik.Form, { className: clsx("reusable-form", `reusable-form--${layout}`, className), children: [fields.map((field, index) => {
+                    if (renderField) {
+                        return (jsxRuntime.jsx("div", { className: "reusable-form__field-wrapper", children: renderField(field, formik$1) }, field.name || index));
+                    }
+                    return (jsxRuntime.jsx("div", { className: "reusable-form__field-wrapper", children: jsxRuntime.jsx(FormField, { name: field.name, label: showLabels ? field.label : undefined, type: field.type || "text", placeholder: field.placeholder, helperText: field.helperText, required: field.required, disabled: field.disabled || loading, className: field.className, rows: field.rows, options: field.options, multiple: field.multiple, accept: field.accept }) }, field.name || index));
+                }), renderSubmitButton ? (renderSubmitButton({ isSubmitting: formik$1.isSubmitting || loading, isValid: formik$1.isValid })) : (jsxRuntime.jsx("button", { type: "submit", disabled: formik$1.isSubmitting || loading || !formik$1.isValid, className: clsx("reusable-form__submit", "ma-btn"), "data-variant": submitVariant, "data-size": submitSize, "data-shape": "rounded", children: loading || formik$1.isSubmitting ? "Submitting..." : submitText }))] })) })));
+    // If no title, description, or image, just return the form
+    if (!title && !description && !image) {
+        return formContent;
+    }
+    // Render form section with title, description, and optional image
+    return (jsxRuntime.jsx("section", { className: clsx("form-section", imagePositionClass, { "form-section--with-image": hasImage }), style: sectionStyle, children: jsxRuntime.jsx("div", { className: "form-section__wrapper", children: jsxRuntime.jsxs("div", { className: "form-section__content", children: [hasImage && imagePosition === "left" && (jsxRuntime.jsx("div", { className: "form-section__image-wrapper", children: jsxRuntime.jsx("img", { src: image, alt: imageAlt || title || "Form illustration", className: clsx("form-section__image", { "form-section__image--rounded": imageRounded }) }) })), jsxRuntime.jsxs("div", { className: "form-section__form-wrapper", style: Object.keys(contentPaddingStyles).length > 0 ? contentPaddingStyles : undefined, children: [hasImage && imagePosition === "left" && (title || description) && (jsxRuntime.jsxs("div", { className: "form-section__header form-section__header--above-form", children: [title && jsxRuntime.jsx("h2", { className: "form-section__title", children: title }), description && jsxRuntime.jsx("p", { className: "form-section__description", children: description })] })), (hasImage && imagePosition === "right" && (title || description)) || (!hasImage && (title || description)) && (jsxRuntime.jsxs("div", { className: clsx("form-section__header", { "form-section__header--with-image": hasImage }), children: [title && jsxRuntime.jsx("h2", { className: "form-section__title", children: title }), description && jsxRuntime.jsx("p", { className: "form-section__description", children: description })] })), formContent] }), hasImage && imagePosition === "right" && (jsxRuntime.jsx("div", { className: "form-section__image-wrapper", children: jsxRuntime.jsx("img", { src: image, alt: imageAlt || title || "Form illustration", className: clsx("form-section__image", { "form-section__image--rounded": imageRounded }) }) }))] }) }) }));
+};
+
+const FormInput = (props) => {
+    return jsxRuntime.jsx(FormField, Object.assign({}, props, { type: props.type || "text" }));
+};
+
+const FormTextArea = (_a) => {
+    var { rows } = _a, props = __rest(_a, ["rows"]);
+    return jsxRuntime.jsx(FormField, Object.assign({}, props, { type: "textarea", rows: rows }));
+};
+
+const FormSelect = (_a) => {
+    var { options, multiple } = _a, props = __rest(_a, ["options", "multiple"]);
+    return jsxRuntime.jsx(FormField, Object.assign({}, props, { type: "select", options: options, multiple: multiple }));
+};
+
+const FormCheckbox = (_a) => {
+    var { label } = _a, props = __rest(_a, ["label"]);
+    return jsxRuntime.jsx(FormField, Object.assign({}, props, { type: "checkbox", label: label }));
+};
+
+const FormRadio = (_a) => {
+    var { options, label } = _a, props = __rest(_a, ["options", "label"]);
+    return jsxRuntime.jsx(FormField, Object.assign({}, props, { type: "radio", options: options, label: label }));
+};
+
+const FormFile = (_a) => {
+    var { accept, multiple } = _a, props = __rest(_a, ["accept", "multiple"]);
+    return jsxRuntime.jsx(FormField, Object.assign({}, props, { type: "file", accept: accept, multiple: multiple }));
+};
+
 exports.AlternatingContentSection = AlternatingContentSection;
 exports.Card = Card;
 exports.Carousel = Carousel;
 exports.CustomButton = CustomButton;
 exports.Footer = Footer;
+exports.Form = Form;
+exports.FormCheckbox = FormCheckbox;
+exports.FormField = FormField;
+exports.FormFile = FormFile;
+exports.FormInput = FormInput;
+exports.FormRadio = FormRadio;
+exports.FormSelect = FormSelect;
+exports.FormTextArea = FormTextArea;
 exports.Hero = Hero;
 exports.ImageCardGrid = ImageCardGrid;
 exports.InfoWithImages = InfoWithImages;

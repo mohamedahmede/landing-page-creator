@@ -39,6 +39,7 @@ export default [
         declarationDir: './dist',
       }),
     ],
+    external: ['react', 'react-dom', 'formik', 'yup'],
   },
   {
     input: 'dist/index.d.ts',

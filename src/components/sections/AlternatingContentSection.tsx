@@ -106,7 +106,7 @@ const AlternatingContentSection: React.FC<AlternatingContentSectionProps> = ({
           {items.map((item, index) => {
             const isEven = index % 2 === 0;
             const position = imagePosition === "right" ? !isEven : isEven; 
-
+ 
             return (
               <div
                 key={index}

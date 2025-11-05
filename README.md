@@ -173,7 +173,6 @@ A highly customizable button component with multiple style variants, sizes, and 
 | `variant` | `"black" \| "white" \| "red" \| "gray" \| "lime" \| "transparent-black" \| "transparent-white" \| "transparent-red" \| "transparent-gray" \| "transparent-lime"` | `"black"` | ❌ | Button style variant |
 | `size` | `"sm" \| "md" \| "lg"` | `"md"` | ❌ | Button size |
 | `shape` | `"rounded" \| "square"` | `"rounded"` | ❌ | Button shape |
-| `disabled` | `boolean` | `false` | ❌ | Disable the button |
 | `unstyled` | `boolean` | `false` | ❌ | Skip all default styles, use only className |
 | `url` | `string` | - | ❌ | Render as link with this URL |
 | `blank` | `boolean` | `false` | ❌ | Open link in new tab (only works with `url`) |
@@ -217,9 +216,6 @@ A highly customizable button component with multiple style variants, sizes, and 
   blank 
   text="External Link" 
 />
-
-// Disabled state
-<CustomButton variant="black" disabled text="Disabled Button" />
 
 // With onClick handler
 <CustomButton 
@@ -265,10 +261,10 @@ A full-width hero section component perfect for landing page headers. Supports b
 | `textColor` | `string` | - | ❌ | Text color (auto-detected if not provided) |
 | `align` | `"left" \| "center" \| "right"` | `"center"` | ❌ | Text alignment |
 | `minHeight` | `string` | `"500px"` | ❌ | Minimum height of the hero section |
-| `paddingX` | `string` | `"0"` | ❌ | Horizontal padding (desktop). Accepts any CSS unit (e.g., "2rem", "48px", "5vh") |
-| `paddingXMobile` | `string` | `"0"` | ❌ | Horizontal padding (mobile). Accepts any CSS unit |
-| `paddingY` | `string` | `"0"` | ❌ | Vertical padding (desktop). Accepts any CSS unit |
-| `paddingYMobile` | `string` | `"0"` | ❌ | Vertical padding (mobile). Accepts any CSS unit |
+| `paddingX` | `string` | - | ❌ | Horizontal padding (desktop). Accepts any CSS unit (e.g., "2rem", "48px", "5vh"). If not provided, defaults to 0 |
+| `paddingXMobile` | `string` | - | ❌ | Horizontal padding (mobile). Accepts any CSS unit. If not provided, defaults to 0 |
+| `paddingY` | `string` | - | ❌ | Vertical padding (desktop). Accepts any CSS unit. If not provided, defaults to 0 |
+| `paddingYMobile` | `string` | - | ❌ | Vertical padding (mobile). Accepts any CSS unit. If not provided, defaults to 0 |
 | `paddingTop` | `string` | - | ❌ | Top padding (desktop). Accepts any CSS unit. If not provided, falls back to paddingY |
 | `paddingTopMobile` | `string` | - | ❌ | Top padding (mobile). Accepts any CSS unit. If not provided, falls back to paddingYMobile |
 | `paddingBottom` | `string` | - | ❌ | Bottom padding (desktop). Accepts any CSS unit. If not provided, falls back to paddingY |
@@ -417,10 +413,14 @@ A flexible statistics grid component for displaying key metrics and data points.
 | `textColor` | `string` | - | ❌ | Custom text color |
 | `backgroundColor` | `string` | - | ❌ | Background color |
 | `backgroundImage` | `string` | - | ❌ | Background image URL |
-| `paddingX` | `string` | `"0"` | ❌ | Horizontal padding (desktop). Accepts any CSS unit (e.g., "2rem", "48px", "5vh") |
-| `paddingXMobile` | `string` | `"0"` | ❌ | Horizontal padding (mobile). Accepts any CSS unit |
-| `paddingY` | `string` | `"0"` | ❌ | Vertical padding (desktop). Accepts any CSS unit |
-| `paddingYMobile` | `string` | `"0"` | ❌ | Vertical padding (mobile). Accepts any CSS unit |
+| `paddingX` | `string` | - | ❌ | Horizontal padding (desktop). Accepts any CSS unit (e.g., "2rem", "48px", "5vh") |
+| `paddingXMobile` | `string` | - | ❌ | Horizontal padding (mobile). Accepts any CSS unit |
+| `paddingY` | `string` | - | ❌ | Vertical padding (desktop). Accepts any CSS unit |
+| `paddingYMobile` | `string` | - | ❌ | Vertical padding (mobile). Accepts any CSS unit |
+| `paddingTop` | `string` | - | ❌ | Top padding (desktop). Accepts any CSS unit. If not provided, falls back to paddingY |
+| `paddingTopMobile` | `string` | - | ❌ | Top padding (mobile). Accepts any CSS unit. If not provided, falls back to paddingYMobile |
+| `paddingBottom` | `string` | - | ❌ | Bottom padding (desktop). Accepts any CSS unit. If not provided, falls back to paddingY |
+| `paddingBottomMobile` | `string` | - | ❌ | Bottom padding (mobile). Accepts any CSS unit. If not provided, falls back to paddingYMobile |
 
 #### StatItem Interface
 
@@ -519,15 +519,21 @@ A comprehensive overview section component that combines highlights, description
 | `className` | `string` | - | ❌ | Custom CSS class for section |
 | `backgroundColor` | `string` | - | ❌ | Background color |
 | `backgroundImage` | `string` | - | ❌ | Background image URL |
-| `paddingX` | `string` | `"0"` | ❌ | Horizontal padding (desktop). Accepts any CSS unit (e.g., "2rem", "48px", "5vh") |
-| `paddingXMobile` | `string` | `"0"` | ❌ | Horizontal padding (mobile). Accepts any CSS unit |
-| `paddingY` | `string` | `"0"` | ❌ | Vertical padding (desktop). Accepts any CSS unit |
-| `paddingYMobile` | `string` | `"0"` | ❌ | Vertical padding (mobile). Accepts any CSS unit |
+| `paddingX` | `string` | - | ❌ | Horizontal padding (desktop). Accepts any CSS unit (e.g., "2rem", "48px", "5vh"). If not provided, defaults to 0 |
+| `paddingXMobile` | `string` | - | ❌ | Horizontal padding (mobile). Accepts any CSS unit. If not provided, defaults to 0 |
+| `paddingY` | `string` | - | ❌ | Vertical padding (desktop). Accepts any CSS unit. If not provided, defaults to 0 |
+| `paddingYMobile` | `string` | - | ❌ | Vertical padding (mobile). Accepts any CSS unit. If not provided, defaults to 0 |
 | `hoverAnimation` | `boolean` | `true` | ❌ | Whether images should have hover scale animation |
+| `paddingTop` | `string` | - | ❌ | Top padding (desktop). Accepts any CSS unit. If not provided, falls back to paddingY |
+| `paddingTopMobile` | `string` | - | ❌ | Top padding (mobile). Accepts any CSS unit. If not provided, falls back to paddingYMobile |
+| `paddingBottom` | `string` | - | ❌ | Bottom padding (desktop). Accepts any CSS unit. If not provided, falls back to paddingY |
+| `paddingBottomMobile` | `string` | - | ❌ | Bottom padding (mobile). Accepts any CSS unit. If not provided, falls back to paddingYMobile |
 | `titleClassName` | `string` | - | ❌ | Custom class for title |
 | `subtitleClassName` | `string` | - | ❌ | Custom class for subtitle |
 | `descriptionClassName` | `string` | - | ❌ | Custom class for description |
 | `highlightsClassName` | `string` | - | ❌ | Custom class for highlights |
+| `roundedCaption` | `boolean` | `false` | ❌ | Whether media caption should be rounded |
+| `mediaCaptionClassName` | `string` | - | ❌ | Custom class for media caption |
 
 #### Interfaces
 
@@ -932,10 +938,10 @@ A flexible section component that displays text content alongside image collages
 | `hoverAnimation` | `boolean` | `true` | ❌ | Whether images should have hover scale animation. Only the hovered image animates (not all images at once) |
 | `backgroundColor` | `string` | - | ❌ | Background color |
 | `backgroundImage` | `string` | - | ❌ | Background image URL |
-| `paddingX` | `string` | `"0"` | ❌ | Horizontal padding (desktop). Accepts any CSS unit (e.g., "2rem", "48px", "5vh") |
-| `paddingXMobile` | `string` | `"0"` | ❌ | Horizontal padding (mobile). Accepts any CSS unit |
-| `paddingY` | `string` | `"0"` | ❌ | Vertical padding (desktop). Accepts any CSS unit |
-| `paddingYMobile` | `string` | `"0"` | ❌ | Vertical padding (mobile). Accepts any CSS unit |
+| `paddingX` | `string` | - | ❌ | Horizontal padding (desktop). Accepts any CSS unit (e.g., "2rem", "48px", "5vh"). If not provided, defaults to 0 |
+| `paddingXMobile` | `string` | - | ❌ | Horizontal padding (mobile). Accepts any CSS unit. If not provided, defaults to 0 |
+| `paddingY` | `string` | - | ❌ | Vertical padding (desktop). Accepts any CSS unit. If not provided, defaults to 0 |
+| `paddingYMobile` | `string` | - | ❌ | Vertical padding (mobile). Accepts any CSS unit. If not provided, defaults to 0 |
 | `paddingTop` | `string` | - | ❌ | Top padding (desktop). Accepts any CSS unit. If not provided, falls back to paddingY |
 | `paddingTopMobile` | `string` | - | ❌ | Top padding (mobile). Accepts any CSS unit. If not provided, falls back to paddingYMobile |
 | `paddingBottom` | `string` | - | ❌ | Bottom padding (desktop). Accepts any CSS unit. If not provided, falls back to paddingY |
@@ -1083,14 +1089,14 @@ A flexible image card grid component that displays items in either a grid or car
 | `hoverAnimation` | `boolean` | `true` | ❌ | Whether images should have hover scale animation |
 | `backgroundColor` | `string` | - | ❌ | Background color |
 | `backgroundImage` | `string` | - | ❌ | Background image URL |
-| `paddingX` | `string` | `"0"` | ❌ | Horizontal padding (desktop). Accepts any CSS unit |
-| `paddingXMobile` | `string` | `"0"` | ❌ | Horizontal padding (mobile). Accepts any CSS unit |
-| `paddingY` | `string` | `"0"` | ❌ | Vertical padding (desktop). Accepts any CSS unit |
-| `paddingYMobile` | `string` | `"0"` | ❌ | Vertical padding (mobile). Accepts any CSS unit |
-| `paddingTop` | `string` | - | ❌ | Top padding (desktop). Accepts any CSS unit |
-| `paddingTopMobile` | `string` | - | ❌ | Top padding (mobile). Accepts any CSS unit |
-| `paddingBottom` | `string` | - | ❌ | Bottom padding (desktop). Accepts any CSS unit |
-| `paddingBottomMobile` | `string` | - | ❌ | Bottom padding (mobile). Accepts any CSS unit |
+| `paddingX` | `string` | - | ❌ | Horizontal padding (desktop). Accepts any CSS unit. If not provided, defaults to 0 |
+| `paddingXMobile` | `string` | - | ❌ | Horizontal padding (mobile). Accepts any CSS unit. If not provided, defaults to 0 |
+| `paddingY` | `string` | - | ❌ | Vertical padding (desktop). Accepts any CSS unit. If not provided, defaults to 0 |
+| `paddingYMobile` | `string` | - | ❌ | Vertical padding (mobile). Accepts any CSS unit. If not provided, defaults to 0 |
+| `paddingTop` | `string` | - | ❌ | Top padding (desktop). Accepts any CSS unit. If not provided, falls back to paddingY |
+| `paddingTopMobile` | `string` | - | ❌ | Top padding (mobile). Accepts any CSS unit. If not provided, falls back to paddingYMobile |
+| `paddingBottom` | `string` | - | ❌ | Bottom padding (desktop). Accepts any CSS unit. If not provided, falls back to paddingY |
+| `paddingBottomMobile` | `string` | - | ❌ | Bottom padding (mobile). Accepts any CSS unit. If not provided, falls back to paddingYMobile |
 | `className` | `string` | - | ❌ | Additional CSS classes |
 
 #### CardItem Interface
@@ -1195,14 +1201,14 @@ A content section component that displays items in an alternating layout with im
 | `hoverAnimation` | `boolean` | `true` | ❌ | Whether images should have hover scale animation |
 | `backgroundColor` | `string` | - | ❌ | Background color |
 | `backgroundImage` | `string` | - | ❌ | Background image URL |
-| `paddingX` | `string` | `"0"` | ❌ | Horizontal padding (desktop). Accepts any CSS unit |
-| `paddingXMobile` | `string` | `"0"` | ❌ | Horizontal padding (mobile). Accepts any CSS unit |
-| `paddingY` | `string` | `"0"` | ❌ | Vertical padding (desktop). Accepts any CSS unit |
-| `paddingYMobile` | `string` | `"0"` | ❌ | Vertical padding (mobile). Accepts any CSS unit |
-| `paddingTop` | `string` | - | ❌ | Top padding (desktop). Accepts any CSS unit |
-| `paddingTopMobile` | `string` | - | ❌ | Top padding (mobile). Accepts any CSS unit |
-| `paddingBottom` | `string` | - | ❌ | Bottom padding (desktop). Accepts any CSS unit |
-| `paddingBottomMobile` | `string` | - | ❌ | Bottom padding (mobile). Accepts any CSS unit |
+| `paddingX` | `string` | - | ❌ | Horizontal padding (desktop). Accepts any CSS unit. If not provided, defaults to 0 |
+| `paddingXMobile` | `string` | - | ❌ | Horizontal padding (mobile). Accepts any CSS unit. If not provided, defaults to 0 |
+| `paddingY` | `string` | - | ❌ | Vertical padding (desktop). Accepts any CSS unit. If not provided, defaults to 0 |
+| `paddingYMobile` | `string` | - | ❌ | Vertical padding (mobile). Accepts any CSS unit. If not provided, defaults to 0 |
+| `paddingTop` | `string` | - | ❌ | Top padding (desktop). Accepts any CSS unit. If not provided, falls back to paddingY |
+| `paddingTopMobile` | `string` | - | ❌ | Top padding (mobile). Accepts any CSS unit. If not provided, falls back to paddingYMobile |
+| `paddingBottom` | `string` | - | ❌ | Bottom padding (desktop). Accepts any CSS unit. If not provided, falls back to paddingY |
+| `paddingBottomMobile` | `string` | - | ❌ | Bottom padding (mobile). Accepts any CSS unit. If not provided, falls back to paddingYMobile |
 | `className` | `string` | - | ❌ | Additional CSS classes |
 
 #### ContentItem Interface
@@ -1433,7 +1439,7 @@ A utility component that renders multiple sections in a declarative way. Perfect
 #### Section Configuration
 
 Each section in the `sections` array must have:
-- `type`: The type of section (`"hero"`, `"stats-grid"`, `"overview"`, or `"info-with-images"`)
+- `type`: The type of section (`"hero"`, `"stats-grid"`, `"overview"`, `"info-with-images"`, `"image-card-grid"`, `"alternating-content"`, `"footer"`, or `"sticky-nav"`)
 - `content`: The props for that section
 
 ```tsx
@@ -1441,7 +1447,11 @@ type SectionConfig =
   | { type: "hero"; content: HeroProps }
   | { type: "stats-grid"; content: StatsGridProps }
   | { type: "overview"; content: OverviewProps }
-  | { type: "info-with-images"; content: InfoWithImagesProps };
+  | { type: "info-with-images"; content: InfoWithImagesProps }
+  | { type: "image-card-grid"; content: ImageCardGridProps }
+  | { type: "alternating-content"; content: AlternatingContentSectionProps }
+  | { type: "footer"; content: FooterProps }
+  | { type: "sticky-nav"; content: StickyNavProps };
 ```
 
 **Note**: Carousel is a standalone component and is not part of SectionsRenderer. Import and use it directly in your components.
@@ -1453,6 +1463,21 @@ import { SectionsRenderer } from 'landing-page-creator';
 
 function LandingPage() {
   const sections = [
+    {
+      type: "sticky-nav" as const,
+      content: {
+        logoUrl: "/logo.png",
+        brandName: "My Brand",
+        links: [
+          { text: "Home", url: "/" },
+          { text: "About", url: "/about" },
+          { text: "Services", url: "/services" },
+          { text: "Contact", url: "/contact" }
+        ],
+        ctaText: "Get Started",
+        ctaUrl: "/signup"
+      }
+    },
     {
       type: "hero" as const,
       content: {
@@ -1513,6 +1538,81 @@ function LandingPage() {
           url: "/about",
           variant: "black"
         }
+      }
+    },
+    {
+      type: "image-card-grid" as const,
+      content: {
+        title: "Our Products",
+        subtitle: "Featured Items",
+        items: [
+          {
+            image: "https://example.com/product1.jpg",
+            imageAlt: "Product 1",
+            title: "Product 1",
+            description: "Description of product 1"
+          },
+          {
+            image: "https://example.com/product2.jpg",
+            imageAlt: "Product 2",
+            title: "Product 2",
+            description: "Description of product 2"
+          }
+        ],
+        layout: "grid",
+        hoverAnimation: true
+      }
+    },
+    {
+      type: "alternating-content" as const,
+      content: {
+        title: "Our Features",
+        subtitle: "Why Choose Us",
+        items: [
+          {
+            image: "https://example.com/feature1.jpg",
+            imageAlt: "Feature 1",
+            title: "Feature 1",
+            description: "Description of feature 1"
+          },
+          {
+            image: "https://example.com/feature2.jpg",
+            imageAlt: "Feature 2",
+            title: "Feature 2",
+            description: "Description of feature 2"
+          }
+        ],
+        imagePosition: "left",
+        hoverAnimation: true
+      }
+    },
+    {
+      type: "footer" as const,
+      content: {
+        brandName: "My Company",
+        logoUrl: "/logo.png",
+        description: "Building amazing products for developers",
+        columns: [
+          {
+            title: "Products",
+            links: [
+              { text: "Features", url: "/features" },
+              { text: "Pricing", url: "/pricing" }
+            ]
+          },
+          {
+            title: "Company",
+            links: [
+              { text: "About", url: "/about" },
+              { text: "Contact", url: "/contact" }
+            ]
+          }
+        ],
+        socialLinks: [
+          { platform: "Twitter", url: "https://twitter.com/company" },
+          { platform: "LinkedIn", url: "https://linkedin.com/company/company" }
+        ],
+        copyright: "© 2024 My Company. All rights reserved."
       }
     }
   ];
